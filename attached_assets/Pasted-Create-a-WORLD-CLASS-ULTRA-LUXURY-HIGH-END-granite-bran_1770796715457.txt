@@ -1,0 +1,309 @@
+Create a WORLD-CLASS, ULTRA LUXURY, HIGH-END granite brand website.
+
+Brand Name: “India Granite Website”
+
+The website must feel like:
+Apple × Rolex × Luxury Architecture Brand × Italian Stone Gallery
+
+Design Language:
+- Ultra minimal
+- Cinematic
+- Elegant
+- Luxury black & white base
+- Gold accent highlights (#D4AF37)
+- Glassmorphism cards
+- Smooth parallax scroll
+- Framer Motion animations
+- 3D hover tilt effects
+- Soft shadows
+- Smooth fade transitions
+- Premium typography
+- Fully responsive (mobile first)
+
+NO PRICE should be displayed anywhere.
+NO port/location names should be displayed.
+
+Use only granite names and premium high-resolution images.
+
+--------------------------------------------------
+🔥 HERO SECTION (CINEMATIC)
+--------------------------------------------------
+
+Full-screen background video or slow zoom granite texture animation.
+
+Luxury headline:
+“Where Stone Becomes Art”
+
+Subheading:
+15+ Years Crafting Timeless Granite Excellence Across India & Worldwide
+
+Buttons:
+- Explore Collection
+- Contact Us (Golden animated button)
+
+Smooth scroll indicator animation.
+
+--------------------------------------------------
+🪨 PREMIUM GRANITE COLLECTION
+--------------------------------------------------
+
+Create an ultra-premium grid gallery layout with category filter.
+
+Use ONLY these granite names:
+
+Ten Brown  
+Ten Red  
+Absolute Black  
+Galaxy Black  
+Sapphire Blue  
+Coffee Brown  
+Vizag Blue  
+Jet Black  
+Black Aurora  
+Lakha Red  
+Jira Wal  
+Tiger Skin  
+S White  
+Forest Green  
+Green Marble  
+Z Brown  
+Peradiso  
+Kotkasta  
+Narlai White  
+Sira Grey  
+Classic Red  
+Green  
+Spider Green  
+Pali Red  
+Viscon White  
+
+Each product card must include:
+- Large premium granite slab image
+- Elegant name typography
+- Glass hover overlay
+- Smooth zoom-in animation
+- “View Collection” button
+- “Request Sample” button
+
+When clicked → open luxury modal with:
+- Large image slider
+- Application preview (kitchen, hall, staircase, bathroom)
+- Short premium description text
+
+--------------------------------------------------
+🏠 APPLICATION SHOWCASE SECTION
+--------------------------------------------------
+
+Create luxury interior showcase:
+
+Sections:
+- Luxury Living Rooms
+- Designer Kitchens
+- Premium Staircases
+- Modern Bathrooms
+- Commercial Spaces
+
+Add smooth sliding gallery.
+
+--------------------------------------------------
+✨ BEFORE & AFTER INSTALLATION SLIDER
+--------------------------------------------------
+
+Interactive drag comparison slider:
+
+Left: Before Installation
+Right: After Installation (Polished Granite Floor)
+
+Ultra smooth transition effect.
+
+--------------------------------------------------
+🗺 GLOBAL PRESENCE SECTION
+--------------------------------------------------
+
+Add animated India Map.
+
+Golden glowing hover dots on:
+- Rajasthan
+- Bangalore
+- Jaipur
+- Rajsamand
+- Kishangarh
+
+Add international glow markers:
+- Nepal
+- Bhutan
+- China
+- Russia
+- Europe (Coming Soon)
+
+On hover show:
+“Active Supply Network”
+
+--------------------------------------------------
+🏢 ABOUT US (LUXURY PRESENTATION)
+--------------------------------------------------
+
+Section design:
+Dark background with gold line accents.
+
+Content:
+
+15+ Years of Excellence  
+All India Supply Network  
+Global Export Presence  
+Expertise in Rajasthan Granite  
+Strong Presence Across India  
+
+Head Office:
+India Granite  
+Chomu, Jaipur  
+Rajasthan – 303702  
+India  
+
+Sub Offices:
+Rajsamand  
+Kishangarh  
+Bangalore  
+
+Add animated counters:
+- 15+ Years
+- 25+ Premium Granite Collections
+- Pan India Network
+- Global Reach
+
+--------------------------------------------------
+👑 LEADERSHIP SECTION (ULTRA PREMIUM CARDS)
+--------------------------------------------------
+
+Create 3 luxury glass profile cards:
+
+Founder  
+Co-Founder  
+Owner  
+
+Each card:
+- Gold border outline
+- Soft floating animation
+- Elegant photo frame
+- Minimal typography
+- Social icon placeholders
+
+--------------------------------------------------
+📞 CONTACT SECTION (Replace Login Button)
+--------------------------------------------------
+
+Instead of login in header:
+Add glowing golden “Contact Us” button.
+
+On click open premium modal form.
+
+Fields:
+- Full Name
+- Mobile Number
+- Email
+- Location
+- Project Type (Residential / Commercial)
+- Granite Interest (Dropdown)
+- Quantity Required
+- Upload Reference Image (Optional)
+- Message
+
+Luxury animated submit button.
+
+--------------------------------------------------
+📱 FLOATING CONTACT OPTIONS
+--------------------------------------------------
+
+Add floating icons:
+
+WhatsApp Button (Pulse animation)
+Phone Call Button
+
+Numbers:
++91-9772988333 – Sumant Kantya
++91-6378789016 – Ram Lal Kantya
++91-7615801154 – Shivam Kumawat
+
+Click to call & WhatsApp redirect enabled.
+
+--------------------------------------------------
+📸 INSTAGRAM FOLLOW SECTION
+--------------------------------------------------
+
+Create premium Instagram showcase section.
+
+Title:
+“Follow Our Craftsmanship”
+
+Add:
+- Instagram grid preview (6–9 images)
+- Hover animation
+- Gold border
+- Button:
+  “Follow Us on Instagram”
+
+Add Instagram icon in footer.
+
+--------------------------------------------------
+🛠 ADMIN PANEL
+--------------------------------------------------
+
+Create secure admin login page.
+
+Admin Dashboard Features:
+
+- View All Enquiries
+- Search + Filter
+- Table layout:
+   Name
+   Mobile
+   Location
+   Granite Interest
+   Date
+   Status
+
+On clicking customer → open expandable detail panel with:
+- Full details
+- Uploaded image preview
+- Buttons:
+    Call
+    WhatsApp
+    Mark as Contacted
+    Delete
+
+Add Export to Excel button.
+
+--------------------------------------------------
+🎨 DESIGN SPECIFICATIONS
+--------------------------------------------------
+
+Tech Stack:
+- Next.js
+- React
+- Tailwind CSS
+- Framer Motion
+- Glassmorphism UI
+- Smooth Scroll
+
+Color Palette:
+Black (#0E0E0E)
+White (#FFFFFF)
+Luxury Gold (#D4AF37)
+
+Fonts:
+- Elegant Serif for headings
+- Modern Sans-serif for body
+
+Add:
+- Dark mode toggle
+- Luxury preloader animation
+- Smooth page transitions
+- SEO optimization
+- Fast loading performance
+
+--------------------------------------------------
+
+The final website must feel like a global luxury stone brand.
+No template look.
+No basic design.
+Everything must look cinematic, elegant, and ultra premium.
