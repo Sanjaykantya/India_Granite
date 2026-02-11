@@ -1,0 +1,236 @@
+Upgrade the existing India Granite Website into a full enterprise-level luxury platform.
+
+Maintain ultra luxury design (Apple × Rolex × Italian Architecture).
+
+----------------------------------------
+IMPORTANT CHANGES
+----------------------------------------
+
+1) Remove duplicate images in collection.
+2) Every granite card must have a different unique image.
+3) Use high resolution non-blur images only.
+4) Improve UI spacing and symmetry.
+5) Fix blur in “Space Transform” section.
+6) Replace hero background (Where Stone Becomes Art) with ultra premium black granite slab image with golden veins.
+
+----------------------------------------
+COLLECTION SECTION UPDATE
+----------------------------------------
+
+Show only 9 granite photos initially.
+
+Add a “Load More” button below.
+When clicked → show remaining granite items dynamically.
+
+After these 9 granite items,
+Create NEW SECTION:
+
+----------------------------------------
+TILES COLLECTION SECTION
+----------------------------------------
+
+Title: “Premium Tiles Collection”
+
+Use different high quality tile images.
+Use elegant grid layout.
+Each tile card:
+- Unique image
+- Tile name
+- Hover animation
+- View Preview button
+
+Ensure all tile images are different (no repetition).
+
+----------------------------------------
+USER ROLES STRUCTURE (VERY IMPORTANT)
+----------------------------------------
+
+Create THREE roles:
+
+1) Developer
+2) Admin
+3) Public User
+
+----------------------------------------
+DEVELOPER PANEL (FULL CONTROL)
+----------------------------------------
+
+Developer Login Panel:
+- Secure login with email + password
+- Only developer can:
+
+✔ Add new granite
+✔ Upload granite photo
+✔ Edit granite name
+✔ Delete granite
+✔ Add tile collection
+✔ Upload tile images
+✔ Edit tile names
+✔ Manage Before/After slider images
+✔ Replace hero images
+✔ Manage map locations
+✔ Manage leadership photos
+✔ Full website content control
+
+Developer Dashboard UI:
+- Ultra premium dark theme
+- Sidebar navigation
+- Image upload preview
+- Drag and drop upload
+- Editable text fields
+- Save changes button
+- Delete confirmation popup
+
+----------------------------------------
+ADMIN PANEL (LIMITED CONTROL)
+----------------------------------------
+
+Admin Login:
+- Username
+- Password
+- Secure authentication
+
+Admin Features:
+✔ View Enquiries
+✔ Search Enquiries
+✔ Filter by Date
+✔ Click enquiry → Expand details
+✔ Call Button
+✔ WhatsApp Button
+✔ Mark as Contacted
+✔ Delete enquiry
+✔ Export to Excel
+
+Admin Settings:
+✔ Change Password option
+✔ Logout
+
+Admin cannot edit granite collection.
+Admin cannot change photos.
+Only manage enquiries.
+
+Improve Admin UI:
+- Clean dashboard
+- Professional data table
+- Status badge (New / Contacted)
+- Modern responsive layout
+
+----------------------------------------
+BEFORE & AFTER SECTION (DEVELOPER EDITABLE)
+----------------------------------------
+
+Fix current polishing slider image quality.
+Use ultra high resolution granite installation photos.
+
+Allow Developer to:
+✔ Add new before image
+✔ Add new after image
+✔ Delete old ones
+✔ Reorder slides
+
+Smooth interactive slider comparison.
+
+----------------------------------------
+INDIA PRESENCE MAP FIX
+----------------------------------------
+
+Replace current map with:
+
+- Proper SVG India Map
+- Clear boundaries
+- Gold glowing dots
+- Tooltip on hover
+
+Locations:
+Rajasthan
+Jaipur
+Rajsamand
+Kishangarh
+Bangalore
+
+International glowing markers:
+Nepal
+Bhutan
+China
+Russia
+Europe (Coming Soon)
+
+Map must be centered and clearly visible.
+
+----------------------------------------
+HERO SECTION FIX
+----------------------------------------
+
+Replace blurred background.
+
+Use:
+Ultra premium black granite with golden veins.
+Cinematic slow zoom animation.
+
+Headline:
+“Where Stone Becomes Timeless Art”
+
+----------------------------------------
+IMAGE MANAGEMENT SYSTEM
+----------------------------------------
+
+All images must:
+- Be stored in backend
+- Optimized automatically
+- No blur
+- No duplication
+- Maintain aspect ratio
+- Lazy load for speed
+
+----------------------------------------
+SECURITY FEATURES
+----------------------------------------
+
+- JWT authentication
+- Role based access control
+- Secure password hashing
+- Protected routes
+- Session management
+
+----------------------------------------
+TECH STACK
+----------------------------------------
+
+Frontend:
+Next.js
+React
+Tailwind CSS
+Framer Motion
+
+Backend:
+Node.js
+Express
+MongoDB (or database)
+Cloudinary (for image upload)
+
+----------------------------------------
+PERFORMANCE
+----------------------------------------
+
+- SEO optimized
+- Fast loading
+- Smooth transitions
+- No image flicker
+- Mobile optimized
+- Professional loader animation
+
+----------------------------------------
+
+Final Result Must Look Like:
+Global Luxury Stone Brand Website
+Enterprise Level Admin System
+Professional Developer CMS Panel
+
+No template look.
+No blurry image.
+No duplicate photo.
+Everything dynamic.
+Everything editable by Developer.
+Admin only for enquiries.
+
+Make UI ultra premium and balanced.
