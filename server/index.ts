@@ -46,7 +46,7 @@ app.use((req, res, next) => {
     res.status(status).json({ message });
   });
 
-  const port = 5000;
+  const port = parseInt(process.env.PORT || "3000", 10);
   httpServer.listen(port, () => {
     console.log(`${new Date().toLocaleTimeString()} [express] serving on port ${port}`);
   });
