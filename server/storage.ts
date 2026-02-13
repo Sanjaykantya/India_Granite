@@ -12,11 +12,20 @@ import { randomUUID } from "crypto";
 import { eq, desc } from "drizzle-orm";
 
 let db: any = null;
-try {
-  const dbModule = await import("./db.js");
-  db = dbModule.db;
-} catch (error) {
-  console.warn("Database module not available, using in-memory storage");
+let dbInitialized = false;
+
+// Initialize database synchronously using require for CommonJS compatibility
+function initializeDatabase() {
+  if (dbInitialized) return;
+  dbInitialized = true;
+  
+  try {
+    // Use require for CJS compatibility instead of await import
+    const dbModule = require("./db.js");
+    db = dbModule.db;
+  } catch (error) {
+    console.warn("Database module not available, using in-memory storage");
+  }
 }
 
 export interface IStorage {
@@ -489,6 +498,24 @@ export class PostgresStorage implements IStorage {
 }
 
 // Initialize storage with database if available, otherwise use in-memory
+let storageInstance: IStorage | null = null;
+
+export function getStorage(): IStorage {
+  if (!storageInstance) {
+    initializeDatabase();
+    storageInstance = db ? new PostgresStorage(db) : new MemStorage();
+    
+    if (db) {
+      console.log("Using PostgreSQL database storage");
+    } else {
+      console.warn("Using in-memory storage. Set DATABASE_URL environment variable to use PostgreSQL.");
+    }
+  }
+  return storageInstance;
+}
+
+// Initialize immediately for backwards compatibility
+initializeDatabase();
 export const storage = db ? new PostgresStorage(db) : new MemStorage();
 
 if (db) {
