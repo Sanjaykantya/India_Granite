@@ -2,18 +2,22 @@ import { drizzle } from "drizzle-orm/node-postgres";
 import { Pool } from "pg";
 import * as schema from "@shared/schema";
 
-if (!process.env.DATABASE_URL) {
-  throw new Error("DATABASE_URL environment variable is not set");
+let dbInstance: ReturnType<typeof drizzle> | null = null;
+let pool: Pool | null = null;
+
+if (process.env.DATABASE_URL) {
+  pool = new Pool({
+    connectionString: process.env.DATABASE_URL,
+  });
+  dbInstance = drizzle(pool, { schema });
+} else {
+  console.warn("DATABASE_URL environment variable is not set. Database features will be unavailable.");
 }
 
-// Create the connection pool
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-});
-
-// Export the database instance
-export const db = drizzle(pool, { schema });
+export const db = dbInstance;
 
 export async function closeDatabase() {
-  await pool.end();
+  if (pool) {
+    await pool.end();
+  }
 }
