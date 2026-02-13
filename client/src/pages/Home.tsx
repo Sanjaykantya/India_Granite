@@ -1,31 +1,33 @@
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { GraniteGallery } from "@/components/GraniteGallery";
+import { TilesGallery } from "@/components/TilesGallery";
 import { ApplicationShowcase } from "@/components/ApplicationShowcase";
 import { BeforeAfter } from "@/components/BeforeAfter";
-import { GlobalMap } from "@/components/GlobalMap";
 import { About } from "@/components/About";
+import { GlobalMap } from "@/components/GlobalMap";
 import { Leadership } from "@/components/Leadership";
-import { ContactSection } from "@/components/Contact";
-import { InstagramFeed } from "@/components/InstagramFeed";
+import { ContactSection as Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
+import { InstagramFeed } from "@/components/InstagramFeed";
 import { FloatingContact } from "@/components/FloatingContact";
 
 export default function Home() {
   return (
-    <div className="bg-black min-h-screen text-white selection:bg-gold selection:text-black">
+    <main className="min-h-screen">
       <Navbar />
       <Hero />
+      <About />
       <GraniteGallery />
+      <TilesGallery />
       <ApplicationShowcase />
       <BeforeAfter />
       <GlobalMap />
-      <About />
       <Leadership />
-      <ContactSection />
       <InstagramFeed />
+      <Contact />
       <Footer />
       <FloatingContact />
-    </div>
+    </main>
   );
 }

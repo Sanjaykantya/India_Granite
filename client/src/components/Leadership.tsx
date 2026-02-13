@@ -1,21 +1,24 @@
 import { motion } from "framer-motion";
-import { User, Linkedin, Mail } from "lucide-react";
+import { Linkedin, Mail } from "lucide-react";
 
 const leaders = [
   {
     role: "Founder",
     name: "Sumant Kantya",
     title: "Visionary Leader",
+    image: "/assets/sumant-kantya.jpeg"
   },
   {
     role: "Co-Founder",
     name: "Ram Lal Kantya",
     title: "Master Craftsman",
+    image: "/assets/ram-lal-kantya.jpeg"
   },
   {
     role: "Owner",
     name: "Shivam Kumawat",
     title: "Global Strategist",
+    image: "/assets/shivam-kumawat.jpeg"
   },
 ];
 
@@ -23,7 +26,7 @@ export function Leadership() {
   return (
     <section className="py-20 bg-gradient-to-b from-black to-[#050505]">
       <div className="container mx-auto px-6">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           className="text-center mb-16"
@@ -42,11 +45,15 @@ export function Leadership() {
               className="group relative"
             >
               <div className="glass-panel p-8 text-center h-full border border-white/5 hover:border-gold/30 transition-all duration-500 relative overflow-hidden">
-                {/* Image Placeholder Frame */}
-                <div className="w-32 h-32 mx-auto rounded-full border border-white/10 p-2 mb-6 group-hover:scale-105 transition-transform duration-500 bg-black">
-                   <div className="w-full h-full rounded-full bg-neutral-800 flex items-center justify-center overflow-hidden">
-                      <User className="text-white/20 w-12 h-12" />
-                   </div>
+                {/* Photo Frame */}
+                <div className="w-40 h-40 mx-auto rounded-full border-2 border-gold/30 p-1 mb-6 group-hover:scale-105 transition-transform duration-500 bg-black shadow-[0_0_20px_rgba(212,175,55,0.15)]">
+                  <div className="w-full h-full rounded-full bg-neutral-800 flex items-center justify-center overflow-hidden">
+                    <img
+                      src={leader.image}
+                      alt={leader.name}
+                      className="w-full h-full object-cover object-top"
+                    />
+                  </div>
                 </div>
 
                 <h3 className="text-2xl font-serif text-white mb-1 group-hover:text-gold transition-colors">{leader.name}</h3>
@@ -54,14 +61,14 @@ export function Leadership() {
                 <p className="text-white/40 font-light text-sm italic">"{leader.title}"</p>
 
                 <div className="flex justify-center gap-4 mt-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                   <div className="p-2 border border-white/10 rounded-full hover:bg-gold hover:text-black cursor-pointer transition-colors text-white/50">
-                     <Linkedin size={16} />
-                   </div>
-                   <div className="p-2 border border-white/10 rounded-full hover:bg-gold hover:text-black cursor-pointer transition-colors text-white/50">
-                     <Mail size={16} />
-                   </div>
+                  <div className="p-2 border border-white/10 rounded-full hover:bg-gold hover:text-black cursor-pointer transition-colors text-white/50">
+                    <Linkedin size={16} />
+                  </div>
+                  <div className="p-2 border border-white/10 rounded-full hover:bg-gold hover:text-black cursor-pointer transition-colors text-white/50">
+                    <Mail size={16} />
+                  </div>
                 </div>
-                
+
                 {/* Floating Glow */}
                 <div className="absolute top-0 left-0 w-full h-full bg-gold/5 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 -z-10"></div>
               </div>

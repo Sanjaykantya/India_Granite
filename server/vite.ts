@@ -22,6 +22,7 @@ export async function setupVite(server: Server, app: Express) {
       ...viteLogger,
       error: (msg, options) => {
         viteLogger.error(msg, options);
+        console.error("[Vite Fatal Error]", msg);
         process.exit(1);
       },
     },
@@ -31,7 +32,13 @@ export async function setupVite(server: Server, app: Express) {
 
   app.use(vite.middlewares);
 
-  app.use("/{*path}", async (req, res, next) => {
+  // Catch-all
+  app.use(async (req, res, next) => {
+    // Only handle GET requests or requests that didn't match anything else
+    if (req.method !== 'GET' || req.path.startsWith('/api') || req.path.startsWith('/attached_assets')) {
+      return next();
+    }
+
     const url = req.originalUrl;
 
     try {
@@ -42,7 +49,6 @@ export async function setupVite(server: Server, app: Express) {
         "index.html",
       );
 
-      // always reload the index.html file from disk incase it changes
       let template = await fs.promises.readFile(clientTemplate, "utf-8");
       template = template.replace(
         `src="/src/main.tsx"`,

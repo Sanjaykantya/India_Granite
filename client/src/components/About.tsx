@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { Users, Globe, Award, Briefcase } from "lucide-react";
 
 function Counter({ value, label }: { value: string; label: string }) {
   return (
@@ -32,13 +31,12 @@ export function About() {
             15+ Years of <span className="text-gold italic">Excellence</span> in Stone Craftsmanship
           </motion.h2>
           <motion.p
-             initial={{ opacity: 0 }}
-             whileInView={{ opacity: 1 }}
-             transition={{ duration: 0.8, delay: 0.2 }}
-             className="text-white/60 leading-relaxed font-light text-lg"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-white/60 leading-relaxed font-light text-lg"
           >
-            Rooted in the rich mineral landscapes of Rajasthan, India Granite has evolved into a global symbol of luxury. 
-            We don't just supply stone; we curate the earth's finest art for the world's most prestigious spaces.
+            Rooted in the rich mineral landscapes of Rajasthan, India Granite has evolved into a global symbol of luxury. We don't just supply stone; we curate the earth's finest art for the world's most prestigious spaces.
           </motion.p>
         </div>
 
