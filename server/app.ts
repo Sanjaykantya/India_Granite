@@ -27,17 +27,17 @@ export async function setupApp() {
         next();
     });
 
+    // CSP Header to fix devtools connection errors
+    app.use((_req, res, next) => {
+        res.setHeader(
+            "Content-Security-Policy",
+            "default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://* http://*;"
+        );
+        next();
+    });
+
     // Routes
     await registerRoutes(httpServer, app);
-
-    // Error handler
-    app.use((err: any, _req: express.Request, res: express.Response, next: express.NextFunction) => {
-        const status = err.status || err.statusCode || 500;
-        const message = err.message || "Internal Server Error";
-        console.error("Internal Server Error:", err);
-        if (res.headersSent) return next(err);
-        res.status(status).json({ message });
-    });
 
     return { app, httpServer };
 }
