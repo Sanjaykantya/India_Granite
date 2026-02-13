@@ -29,9 +29,10 @@ export async function setupApp() {
 
     // CSP Header to fix devtools connection errors
     app.use((_req, res, next) => {
+        const cspValue = "default-src * 'unsafe-inline' 'unsafe-eval' data: blob:; connect-src * 'unsafe-inline' 'unsafe-eval' data: blob: ws: wss:;";
         res.setHeader(
             "Content-Security-Policy",
-            "default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://* http://*;"
+            cspValue
         );
         next();
     });

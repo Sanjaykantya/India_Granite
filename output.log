@@ -1,0 +1,28 @@
+
+> rest-express@1.0.0 dev
+> cross-env NODE_ENV=development tsx server/index.ts
+
+DATABASE_URL environment variable is not set. Database features will be unavailable.
+Database module not available or DATABASE_URL missing, using in-memory storage
+Using in-memory storage. Set DATABASE_URL environment variable to use PostgreSQL.
+[Vite] Setup with root: C:\Users\sanja\OneDrive\Desktop\India Granite\Luxury-Granite-World\Luxury-Granite-World\client
+[Vite] import.meta.dirname: C:\Users\sanja\OneDrive\Desktop\India Granite\Luxury-Granite-World\Luxury-Granite-World\server
+C:\Users\sanja\OneDrive\Desktop\India Granite\Luxury-Granite-World\Luxury-Granite-World\node_modules\path-to-regexp\src\index.ts:225
+      throw new PathError(`Missing parameter name at index ${index}`, str);
+            ^
+
+PathError [TypeError]: Missing parameter name at index 1: *; visit https://git.new/pathToRegexpError for info
+    at name (C:\Users\sanja\OneDrive\Desktop\India Granite\Luxury-Granite-World\Luxury-Granite-World\node_modules\path-to-regexp\src\index.ts:225:13)
+    at parse (C:\Users\sanja\OneDrive\Desktop\India Granite\Luxury-Granite-World\Luxury-Granite-World\node_modules\path-to-regexp\src\index.ts:242:62)
+    at pathToRegexp (C:\Users\sanja\OneDrive\Desktop\India Granite\Luxury-Granite-World\Luxury-Granite-World\node_modules\path-to-regexp\src\index.ts:480:54)
+    at Object.match (C:\Users\sanja\OneDrive\Desktop\India Granite\Luxury-Granite-World\Luxury-Granite-World\node_modules\path-to-regexp\src\index.ts:438:28)
+    at matcher (C:\Users\sanja\OneDrive\Desktop\India Granite\Luxury-Granite-World\Luxury-Granite-World\node_modules\router\lib\layer.js:86:23)
+    at new Layer (C:\Users\sanja\OneDrive\Desktop\India Granite\Luxury-Granite-World\Luxury-Granite-World\node_modules\router\lib\layer.js:93:62)
+    at router.use (C:\Users\sanja\OneDrive\Desktop\India Granite\Luxury-Granite-World\Luxury-Granite-World\node_modules\router\index.js:398:19)
+    at app.<anonymous> (C:\Users\sanja\OneDrive\Desktop\India Granite\Luxury-Granite-World\Luxury-Granite-World\node_modules\express\lib\application.js:222:21)
+    at Array.forEach (<anonymous>)
+    at app.use (C:\Users\sanja\OneDrive\Desktop\India Granite\Luxury-Granite-World\Luxury-Granite-World\node_modules\express\lib\application.js:219:7) {
+  originalPath: '*'
+}
+
+Node.js v25.2.1

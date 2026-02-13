@@ -14,6 +14,20 @@ import { type Request, Response, NextFunction } from "express";
     await setupVite(httpServer, app);
   }
 
+  // 404 Handler - Log unhandled requests
+  app.use((req, res, next) => {
+    const url = req.originalUrl;
+    if (url.startsWith("/api")) {
+      // API 404
+      return res.status(404).json({ message: "Not Found" });
+    }
+    console.log(`[express] 404 Not Found: ${req.method} ${url}`);
+    next(); // Pass to error handler or just send 404 page?
+    // If we call next(), it goes to error handler? No, error handler takes 4args.
+    // If we want to return 404 page from express default, we can just return or send status.
+    res.status(404).send("Not Found");
+  });
+
   // Error handler (must comes last)
   app.use((err: any, _req: Request, res: Response, next: NextFunction) => {
     const status = err.status || err.statusCode || 500;

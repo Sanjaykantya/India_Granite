@@ -30,9 +30,17 @@ export async function setupVite(server: Server, app: Express) {
     appType: "custom",
   });
 
+  console.log(`[Vite] Setup with root: ${viteConfig.root}`);
+  console.log(`[Vite] import.meta.dirname: ${import.meta.dirname}`);
+
+  app.use((req, res, next) => {
+    // console.log(`[Vite] Middleware stack reached: ${req.method} ${req.url}`);
+    next();
+  });
+
   app.use(vite.middlewares);
 
-  // Catch-all
+  // Serve index.html for all other routes
   app.use(async (req, res, next) => {
     // Only handle GET requests or requests that didn't match anything else
     if (req.method !== 'GET' || req.path.startsWith('/api') || req.path.startsWith('/attached_assets')) {
@@ -40,6 +48,7 @@ export async function setupVite(server: Server, app: Express) {
     }
 
     const url = req.originalUrl;
+    console.log(`[Vite] Catch-all handling: ${url}`);
 
     try {
       const clientTemplate = path.resolve(
@@ -49,6 +58,13 @@ export async function setupVite(server: Server, app: Express) {
         "index.html",
       );
 
+      if (!fs.existsSync(clientTemplate)) {
+        console.error(`[Vite] Template not found at: ${clientTemplate}`);
+        return next(new Error("Index.html not found"));
+      }
+
+      console.log(`[Vite] Serving index.html for ${url} from ${clientTemplate}`);
+
       let template = await fs.promises.readFile(clientTemplate, "utf-8");
       template = template.replace(
         `src="/src/main.tsx"`,
@@ -57,6 +73,7 @@ export async function setupVite(server: Server, app: Express) {
       const page = await vite.transformIndexHtml(url, template);
       res.status(200).set({ "Content-Type": "text/html" }).end(page);
     } catch (e) {
+      console.error("[Vite] Error serving index.html:", e);
       vite.ssrFixStacktrace(e as Error);
       next(e);
     }
