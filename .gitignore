@@ -1,0 +1,15 @@
+node_modules
+client/node_modules
+server/node_modules
+dist
+.local
+*.log
+.DS_Store
+server/public
+vite.config.ts.*
+*.tar.gz
+.env
+.env.local
+.env.*.local
+server/.env
+client/.env
