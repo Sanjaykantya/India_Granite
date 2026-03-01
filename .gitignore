@@ -13,3 +13,4 @@ vite.config.ts.*
 .env.*.local
 server/.env
 client/.env
+push_output*.txt

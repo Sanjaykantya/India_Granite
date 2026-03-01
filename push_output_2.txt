@@ -1,5 +1,0 @@
-remote: fatal: did not receive expected object cb7f91fbedfa16456478ffb0a87e9110fa2e2476        
-error: remote unpack failed: index-pack failed
-To https://github.com/Sanjaykantya/India_Granite.git
- ! [remote rejected] main -> main (failed)
-error: failed to push some refs to 'https://github.com/Sanjaykantya/India_Granite.git'
