@@ -106,9 +106,9 @@ export default function Dashboard() {
                                                     <TableCell className="font-medium whitespace-nowrap">
                                                         <div className="flex items-center gap-3">
                                                             <div className="w-8 h-8 rounded-full bg-gold/10 flex items-center justify-center text-gold text-xs font-bold">
-                                                                {e.name.charAt(0).toUpperCase()}
+                                                                {(e.fullName?.charAt(0) || "").toUpperCase()}
                                                             </div>
-                                                            {e.name}
+                                                            {e.fullName}
                                                         </div>
                                                     </TableCell>
                                                     <TableCell>
@@ -119,7 +119,7 @@ export default function Dashboard() {
                                                             </div>
                                                             <div className="flex items-center gap-2 text-xs font-bold text-gold">
                                                                 <Phone size={10} />
-                                                                {e.phone}
+                                                                {e.mobileNumber}
                                                             </div>
                                                         </div>
                                                     </TableCell>
@@ -157,7 +157,7 @@ export default function Dashboard() {
                                                                 variant="outline"
                                                                 size="sm"
                                                                 className="h-8 border-green-500/20 text-green-500 hover:bg-green-500 hover:text-black text-xs"
-                                                                onClick={() => window.open(`tel:${e.phone}`)}
+                                                                onClick={() => window.open(`tel:${e.mobileNumber}`)}
                                                             >
                                                                 <Phone size={12} className="mr-1" />
                                                                 Call

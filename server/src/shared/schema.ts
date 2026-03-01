@@ -8,8 +8,9 @@ export const roles = ["developer", "admin", "public"] as const;
 export const users = pgTable("users", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
   username: text("username").notNull().unique(),
-  password: text("password").notNull(),
-  role: text("role", { enum: roles }).notNull().default("public"),
+  passwordHash: text("password_hash").notNull(),
+  role: text("role").notNull(),
+  name: text("name").notNull(),
 });
 
 export const granites = pgTable("granites", {
@@ -30,11 +31,15 @@ export const tiles = pgTable("tiles", {
 
 export const enquiries = pgTable("enquiries", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  name: text("name").notNull(),
+  fullName: text("full_name").notNull(),
+  mobileNumber: text("mobile_number").notNull(),
   email: text("email").notNull(),
-  phone: text("phone").notNull(),
-  message: text("message").notNull(),
-  status: text("status", { enum: ["new", "contacted"] }).notNull().default("new"),
+  location: text("location"),
+  projectType: text("project_type"),
+  graniteInterest: text("granite_interest"),
+  quantity: text("quantity"),
+  referenceImageUrl: text("reference_image_url"),
+  message: text("message"),
   createdAt: timestamp("created_at").defaultNow(),
 });
 
@@ -63,13 +68,15 @@ export const siteContent = pgTable("site_content", {
 // Zod schemas
 export const insertUserSchema = createInsertSchema(users).pick({
   username: true,
-  password: true,
+  passwordHash: true, // ✅ FIXED
   role: true,
+  name: true,
 });
 
 export const insertGraniteSchema = createInsertSchema(granites).omit({ id: true, createdAt: true });
 export const insertTileSchema = createInsertSchema(tiles).omit({ id: true, createdAt: true });
-export const insertEnquirySchema = createInsertSchema(enquiries).omit({ id: true, createdAt: true });
+export const insertEnquirySchema =
+  createInsertSchema(enquiries).omit({ id: true, createdAt: true });
 export const insertSliderImageSchema = createInsertSchema(sliderImages).omit({ id: true });
 export const insertMapLocationSchema = createInsertSchema(mapLocations).omit({ id: true });
 export const insertSiteContentSchema = createInsertSchema(siteContent).omit({ id: true });

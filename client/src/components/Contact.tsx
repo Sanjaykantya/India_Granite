@@ -107,11 +107,15 @@ Reference Image: ${formData.refImage ? "Attached (See Below)" : "None"}
       }
 
       mutation.mutate({
-         name: formData.name,
+         fullName: formData.name,
+         mobileNumber: formData.mobile,
          email: formData.email,
-         phone: formData.mobile,
+         location: formData.location,
+         projectType: formData.projectType,
+         graniteInterest: formData.graniteInterest,
+         quantity: formData.quantity,
+         referenceImageUrl: formData.refImage,
          message: finalMessage,
-         status: "new"
       });
    };
 

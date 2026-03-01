@@ -6,7 +6,7 @@ const leaders = [
     role: "Founder",
     name: "Sumant Kantya",
     title: "Visionary Leader",
-    image: "/assets/sumant-kantya.jpeg"
+    image: "/assets/sumant-kantya.jpeg?v=2"
   },
   {
     role: "Co-Founder",

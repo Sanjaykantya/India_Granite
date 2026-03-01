@@ -104,8 +104,9 @@ export class MemStorage implements IStorage {
     const user: User = {
       id,
       username: insertUser.username,
-      password: insertUser.password,
-      role: insertUser.role || "public"
+      passwordHash: insertUser.passwordHash,
+      role: insertUser.role || "public",
+      name: insertUser.name,
     };
     this.users.set(id, user);
     return user;
@@ -178,16 +179,26 @@ export class MemStorage implements IStorage {
   }
   async createEnquiry(insertEnquiry: InsertEnquiry): Promise<Enquiry> {
     const id = randomUUID();
-    const enquiry: Enquiry = { ...insertEnquiry, id, createdAt: new Date(), status: "new" };
+    const enquiry: Enquiry = {
+      id,
+      fullName: insertEnquiry.fullName,
+      mobileNumber: insertEnquiry.mobileNumber,
+      email: insertEnquiry.email,
+      location: insertEnquiry.location ?? null,
+      projectType: insertEnquiry.projectType ?? null,
+      graniteInterest: insertEnquiry.graniteInterest ?? null,
+      quantity: insertEnquiry.quantity ?? null,
+      referenceImageUrl: insertEnquiry.referenceImageUrl ?? null,
+      message: insertEnquiry.message ?? null,
+      createdAt: new Date(),
+    };
     this.enquiries.set(id, enquiry);
     return enquiry;
   }
   async updateEnquiryStatus(id: string, status: "new" | "contacted"): Promise<Enquiry> {
     const existing = this.enquiries.get(id);
     if (!existing) throw new Error("Enquiry not found");
-    const updated = { ...existing, status };
-    this.enquiries.set(id, updated);
-    return updated;
+    return existing;
   }
   async deleteEnquiry(id: string): Promise<void> {
     this.enquiries.delete(id);
@@ -260,7 +271,12 @@ export class MemStorage implements IStorage {
 
   async seedUser(insertUser: InsertUser): Promise<void> {
     const id = randomUUID();
-    const user: User = { ...insertUser, id, role: insertUser.role || "public" };
+    const user: User = {
+      ...insertUser,
+      id,
+      role: insertUser.role || "public",
+      name: insertUser.name,
+    };
     this.users.set(id, user);
   }
 }
@@ -289,8 +305,9 @@ export class PostgresStorage implements IStorage {
     const user: User = {
       id,
       username: insertUser.username,
-      password: insertUser.password,
-      role: insertUser.role || "public"
+      passwordHash: insertUser.passwordHash,
+      role: insertUser.role || "public",
+      name: insertUser.name,
     };
     await this.db.insert(users).values(user);
     return user;
@@ -383,9 +400,16 @@ export class PostgresStorage implements IStorage {
     const id = randomUUID();
     const enquiry: Enquiry = {
       id,
-      ...insertEnquiry,
-      status: "new",
-      createdAt: new Date()
+      fullName: insertEnquiry.fullName,
+      mobileNumber: insertEnquiry.mobileNumber,
+      email: insertEnquiry.email,
+      location: insertEnquiry.location ?? null,
+      projectType: insertEnquiry.projectType ?? null,
+      graniteInterest: insertEnquiry.graniteInterest ?? null,
+      quantity: insertEnquiry.quantity ?? null,
+      referenceImageUrl: insertEnquiry.referenceImageUrl ?? null,
+      message: insertEnquiry.message ?? null,
+      createdAt: new Date(),
     };
     await this.db.insert(enquiries).values(enquiry);
     return enquiry;
@@ -396,9 +420,7 @@ export class PostgresStorage implements IStorage {
       where: eq(enquiries.id, id),
     });
     if (!existing) throw new Error("Enquiry not found");
-    const updated = { ...existing, status };
-    await this.db.update(enquiries).set(updated).where(eq(enquiries.id, id));
-    return updated;
+    return existing;
   }
 
   async deleteEnquiry(id: string): Promise<void> {
@@ -492,8 +514,14 @@ export class PostgresStorage implements IStorage {
 
   async seedUser(insertUser: InsertUser): Promise<void> {
     const id = randomUUID();
-    const user: User = { ...insertUser, id, role: insertUser.role || "public" };
-    await this.db.insert(users).values(user);
+
+    await this.db.insert(users).values({
+      id,
+      username: insertUser.username,
+      passwordHash: insertUser.passwordHash, // ✅ IMPORTANT FIX
+      role: insertUser.role || "public",
+      name: insertUser.name,
+    });
   }
 }
 

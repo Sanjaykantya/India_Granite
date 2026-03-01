@@ -25,11 +25,12 @@ export async function registerRoutes(
   const adminExists = await storage.getUserByUsername("Admin");
   if (!adminExists) {
     const { hashPassword } = await import("./auth.js");
-    const hashedAdmin = await hashPassword("Admin");
+    const hashedAdmin = await hashPassword("admin");
     await storage.seedUser({
       username: "Admin",
-      password: hashedAdmin,
+      passwordHash: hashedAdmin,
       role: "admin",
+      name: "Administrator",
     });
   }
 
@@ -171,7 +172,7 @@ export async function registerRoutes(
     if (username) update.username = username;
     if (password) {
       const { hashPassword } = await import("./auth.js");
-      update.password = await hashPassword(password);
+      update.passwordHash = await hashPassword(password);
     }
 
     const updatedUser = await storage.updateUser(user.id, update);

@@ -32,9 +32,9 @@ export function Footer() {
           <div>
             <h3 className="text-white font-serif uppercase tracking-widest mb-6 text-sm">Sub Offices</h3>
             <ul className="text-white/60 font-light space-y-2">
-              <li className="flex items-center gap-2"><MapPin size={12} className="text-gold" /> Rajsamand</li>
               <li className="flex items-center gap-2"><MapPin size={12} className="text-gold" /> Kishangarh</li>
-              <li className="flex items-center gap-2"><MapPin size={12} className="text-gold" /> Bangalore</li>
+              <li className="flex items-center gap-2"><MapPin size={12} className="text-gold" /> Rajsamand</li>
+              <li className="flex items-center gap-2"><MapPin size={12} className="text-gold" /> Karimnagar</li>
             </ul>
           </div>
 
