@@ -2,10 +2,16 @@ import express from "express";
 import { createServer } from "http";
 import { registerRoutes } from "./routes.js";
 import path from "path";
+import cors from "cors";
 
 export async function setupApp() {
     const app = express();
     const httpServer = createServer(app);
+
+    app.use(cors({
+        origin: true,
+        credentials: true
+    }));
 
     // Body parsing with increased limit for image uploads
     app.use(express.json({ limit: "50mb" }));
