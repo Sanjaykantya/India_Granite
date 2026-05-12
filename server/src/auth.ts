@@ -30,12 +30,15 @@ declare global {
 }
 
 export function setupAuth(app: Express) {
+    const isProduction = process.env.NODE_ENV === "production";
     const sessionSettings: session.SessionOptions = {
         secret: process.env.SESSION_SECRET || "lux-granite-secret",
         resave: false,
         saveUninitialized: false,
         cookie: {
-            secure: process.env.NODE_ENV === "production",
+            secure: isProduction,
+            httpOnly: true,
+            sameSite: isProduction ? "none" : "lax", // 'none' required for cross-origin cookies
             maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
         },
     };
