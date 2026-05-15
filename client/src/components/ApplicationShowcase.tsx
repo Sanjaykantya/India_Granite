@@ -4,10 +4,10 @@ import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
 
 
 const showcaseItems = [
-   { id: 1, title: "Luxurious Living Spaces", image: "/assets/tile-w1.webp", desc: "Italian-engineered surfaces for the heart of the home." },
-   { id: 2, title: "Grand Lobby Entrances", image: "/assets/tile-t8.avif", desc: "First impressions that resonate with architectural power." },
-   { id: 3, title: "Spa & Sanctuary", image: "/assets/tile-t7.avif", desc: "Water-resistant luxury that brings nature's serenity indoors." },
-   { id: 4, title: "Corporate Monuments", image: "/assets/tile-b1.avif", desc: "Timeless granite expressions for world-class establishments." },
+   { id: 1, title: "Luxurious Living Spaces", image: "/assets/marble-2.jpeg", desc: "Italian-engineered surfaces for the heart of the home." },
+   { id: 2, title: "Grand Lobby Entrances", image: "/assets/new-granite-10.jpeg", desc: "First impressions that resonate with architectural power." },
+   { id: 3, title: "Spa & Sanctuary", image: "/assets/marble-15.jpeg", desc: "Water-resistant luxury that brings nature's serenity indoors." },
+   { id: 4, title: "Corporate Monuments", image: "/assets/new-granite-8.jpeg", desc: "Timeless granite expressions for world-class establishments." },
 ];
 
 export function ApplicationShowcase() {
@@ -77,12 +77,14 @@ export function ApplicationShowcase() {
                            animate={{ opacity: 1, y: 0 }}
                            transition={{ delay: 0.5 }}
                         >
+                           {/* 
                            <h3 className="text-5xl md:text-7xl font-serif text-white mb-6">
                               {showcaseItems[currentIndex].title}
                            </h3>
                            <p className="text-white/60 font-light text-lg mb-10 tracking-wide max-w-md">
                               {showcaseItems[currentIndex].desc}
                            </p>
+                           */}
                            <button className="flex items-center gap-4 group">
                               <span className="w-12 h-px bg-gold group-hover:w-24 transition-all duration-700" />
                               <span className="text-gold uppercase tracking-[0.3em] text-xs font-bold group-hover:text-white transition-colors">

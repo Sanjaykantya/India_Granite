@@ -13,9 +13,9 @@ export function Footer() {
               Crafting legacy through stone. We bring the finest granite from the heart of India to the world's most luxurious spaces.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-white/60 hover:text-gold transition-colors"><Instagram size={20} /></a>
-              <a href="#" className="text-white/60 hover:text-gold transition-colors"><Phone size={20} /></a>
-              <a href="#" className="text-white/60 hover:text-gold transition-colors"><Mail size={20} /></a>
+              <a href="#" className="text-white/60 hover:text-gold transition-colors cursor-pointer" title="Instagram (Coming Soon)"><Instagram size={20} /></a>
+              <a href="tel:9772988333" className="text-white/60 hover:text-gold transition-colors cursor-pointer" title="Call Us"><Phone size={20} /></a>
+              <a href="mailto:indiagranite@gmail.com" className="text-white/60 hover:text-gold transition-colors cursor-pointer" title="Email Us"><Mail size={20} /></a>
             </div>
           </div>
 
@@ -23,7 +23,7 @@ export function Footer() {
             <h3 className="text-white font-serif uppercase tracking-widest mb-6 text-sm">Head Office</h3>
             <div className="text-white/60 font-light space-y-2">
               <p>India Granite</p>
-              <p>Chomu, Jaipur</p>
+              <p>Jaipur</p>
               <p>Rajasthan – 303702</p>
               <p>India</p>
             </div>
