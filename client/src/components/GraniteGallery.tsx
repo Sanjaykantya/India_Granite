@@ -3,6 +3,18 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Plus } from "lucide-react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 
+// ── NEW photos from 29th_May_Enhance_photo — displayed FIRST (top of grid) ──
+const newTopGranites = [
+  { name: "Brown Black 2", category: "Brown", image: "/assets/29th_May_Enhance_photo/Brownblack2.png" },
+  { name: "Black White Dot", category: "Black", image: "/assets/29th_May_Enhance_photo/blacky_whitedot.png" },
+  { name: "Brown Black", category: "Brown", image: "/assets/29th_May_Enhance_photo/brownblack.png" },
+  { name: "Granite P1", category: "Grey", image: "/assets/29th_May_Enhance_photo/p1.png" },
+  { name: "Granite P2", category: "Grey", image: "/assets/29th_May_Enhance_photo/p2.png" },
+  { name: "Granite P3", category: "Grey", image: "/assets/29th_May_Enhance_photo/p3.png" },
+  { name: "Photo 2", category: "White", image: "/assets/29th_May_Enhance_photo/photo2.png" },
+  { name: "White Black", category: "White", image: "/assets/29th_May_Enhance_photo/whiteblack1.png" },
+];
+
 // All granites with proper color categories
 const initialGranites = [
   // New granite photos (categorized by visual color from the actual images)
@@ -45,8 +57,11 @@ export function GraniteGallery() {
   const [selectedGranite, setSelectedGranite] = useState<any>(null);
   const [heroSlideIndex, setHeroSlideIndex] = useState(0);
 
-  const allGranites = [...initialGranites, ...remainingGranites];
-  const displayedGranites = (showAll ? allGranites : initialGranites).filter(
+  // New top photos + existing photos combined (new ones first)
+  const allTopGranites = [...newTopGranites, ...initialGranites];
+  const allGranites = [...allTopGranites, ...remainingGranites];
+
+  const displayedGranites = (showAll ? allGranites : allTopGranites).filter(
     (g) => filter === "All" || g.category === filter
   );
 
@@ -184,22 +199,45 @@ export function GraniteGallery() {
           </div>
         )}
 
-        {/* Modal */}
+        {/* Modal — shows only the zoomed image + Contact Us button */}
         <Dialog open={!!selectedGranite} onOpenChange={(open) => !open && setSelectedGranite(null)}>
-          <DialogContent className="bg-[#0e0e0e] border-white/5 text-white max-w-5xl p-0 overflow-hidden shadow-[0_0_100px_rgba(0,0,0,0.8)]">
+          <DialogContent className="bg-[#0e0e0e] border-white/5 text-white max-w-4xl p-0 overflow-hidden shadow-[0_0_100px_rgba(0,0,0,0.8)]">
             {selectedGranite && (
-              <div className="grid md:grid-cols-2 h-[90vh] md:h-[700px]">
-                <div className="relative h-full overflow-hidden">
-                  <img src={selectedGranite.image} className="w-full h-full object-cover" alt={selectedGranite.name} />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent flex items-end p-10">
-                    {/* <h2 className="text-5xl font-serif text-white">{selectedGranite.name}</h2> */}
-                  </div>
+              <div className="relative flex flex-col items-center">
+                {/* Full zoomed image */}
+                <div className="relative w-full">
+                  <img
+                    src={selectedGranite.image}
+                    className="w-full object-contain"
+                    style={{ maxHeight: "75vh" }}
+                    alt={selectedGranite.name}
+                  />
                 </div>
-                <div className="p-12 md:p-16 flex flex-col justify-center bg-[#111]">
-                  <span className="text-gold uppercase tracking-[0.4em] text-xs mb-4">{selectedGranite.category} Series</span>
+
+                {/* Contact Us button */}
+                <div className="w-full px-8 py-6 bg-[#111] flex justify-center">
+                  <a
+                    href="#contact"
+                    onClick={() => setSelectedGranite(null)}
+                    className="inline-block px-16 py-4 bg-gold text-black uppercase tracking-widest text-xs font-bold hover:bg-white transition-all duration-500"
+                  >
+                    Contact Us for This Material
+                  </a>
+                </div>
+
+                {/*
+                  ╔══════════════════════════════════════════════════════════╗
+                  ║  COMMENTED OUT — Product info to be corrected later      ║
+                  ╚══════════════════════════════════════════════════════════╝
+
+                  <span className="text-gold uppercase tracking-[0.4em] text-xs mb-4">
+                    {selectedGranite.category} Series
+                  </span>
+
                   <p className="text-white/60 font-light leading-relaxed mb-12 text-lg">
-                    A testament to nature's artistry. Our {selectedGranite.name} granite offers unparalleled depth and durability.
-                    Processed with state-of-the-art Italian technology to ensure a mirror-like finish that lasts a lifetime.
+                    A testament to nature's artistry. Our {selectedGranite.name} granite offers unparalleled depth
+                    and durability. Processed with state-of-the-art Italian technology to ensure a mirror-like
+                    finish that lasts a lifetime.
                   </p>
 
                   <div className="grid grid-cols-2 gap-8 mb-12 border-y border-white/5 py-8">
@@ -213,15 +251,13 @@ export function GraniteGallery() {
                     </div>
                   </div>
 
-                  <div className="space-y-4">
-                    <button className="w-full py-5 bg-gold text-black uppercase tracking-widest text-xs hover:bg-white transition-all duration-500 font-bold">
-                      Request Quotation
-                    </button>
-                    <button className="w-full py-5 border border-white/10 text-white uppercase tracking-widest text-xs hover:border-gold hover:text-gold transition-all duration-500">
-                      Technical Data Sheet
-                    </button>
-                  </div>
-                </div>
+                  <button className="w-full py-5 bg-gold text-black uppercase tracking-widest text-xs hover:bg-white transition-all duration-500 font-bold">
+                    Request Quotation
+                  </button>
+                  <button className="w-full py-5 border border-white/10 text-white uppercase tracking-widest text-xs hover:border-gold hover:text-gold transition-all duration-500">
+                    Technical Data Sheet
+                  </button>
+                */}
               </div>
             )}
           </DialogContent>
