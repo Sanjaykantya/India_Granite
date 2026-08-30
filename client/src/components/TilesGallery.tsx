@@ -76,7 +76,7 @@ export function TilesGallery() {
     const displayedMarbles = showAll ? allMarbles : allMarbles.slice(0, INITIAL_SHOW);
 
     return (
-        <section id="tiles" className="py-24 bg-black">
+        <section id="tiles" className="py-24 bg-background">
             <div className="container mx-auto px-6">
                 <div className="text-center mb-12">
                     <motion.span
@@ -92,17 +92,17 @@ export function TilesGallery() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
-                        className="text-4xl md:text-6xl font-serif text-white mt-4"
+                        className="text-4xl md:text-6xl font-serif text-foreground mt-4"
                     >
                         Premium Marble Collection
                     </motion.h2>
-                    <p className="text-white/40 mt-6 max-w-2xl mx-auto font-light tracking-widest text-sm uppercase">
+                    <p className="text-foreground/50 mt-6 max-w-2xl mx-auto font-light tracking-widest text-sm uppercase">
                         Architectural elegance redefined through precision craftsmanship
                     </p>
                 </div>
 
                 {/* Featured Slideshow - Large hero image with auto-rotate */}
-                <div className="relative mb-16 rounded-lg overflow-hidden group bg-[#0a0a0a]" style={{ height: "550px" }}>
+                <div className="relative mb-16 rounded-lg overflow-hidden group bg-secondary shadow-lg" style={{ height: "550px" }}>
                     <AnimatePresence mode="wait">
                         <motion.img
                             key={currentSlide}
@@ -115,7 +115,7 @@ export function TilesGallery() {
                             transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
                         />
                     </AnimatePresence>
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/40 z-10 pointer-events-none" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/20 z-10 pointer-events-none" />
 
                     {/* Navigation Arrows */}
                     <button
@@ -145,7 +145,7 @@ export function TilesGallery() {
                             <button
                                 key={idx}
                                 onClick={() => setCurrentSlide(idx)}
-                                className={`h-1 rounded-full transition-all duration-500 ${idx === currentSlide ? "bg-gold w-6" : "bg-white/30 w-3"
+                                className={`h-1 rounded-full transition-all duration-500 ${idx === currentSlide ? "bg-gold w-6" : "bg-white/40 w-3"
                                     }`}
                             />
                         ))}
@@ -161,7 +161,7 @@ export function TilesGallery() {
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.05 }}
                             key={marble.name + index}
-                            className="group relative aspect-[4/3] rounded-lg overflow-hidden cursor-crosshair bg-[#111]"
+                            className="group relative aspect-[4/3] rounded-lg overflow-hidden cursor-crosshair bg-secondary shadow-sm"
                             onClick={() => setSelectedMarble(marble)}
                         >
                             <img
@@ -170,18 +170,18 @@ export function TilesGallery() {
                                 alt={marble.name}
                             />
                             {/* Luxury Frame */}
-                            <div className="absolute inset-0 border border-white/0 group-hover:border-white/20 transition-all duration-700 z-30 pointer-events-none" />
+                            <div className="absolute inset-0 border border-white/0 group-hover:border-white/30 transition-all duration-700 z-30 pointer-events-none" />
 
                             {/* Content Overlay */}
-                            <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-colors duration-500 z-10" />
+                            <div className="absolute inset-0 bg-black/30 group-hover:bg-black/55 transition-colors duration-500 z-10" />
 
                             <div className="absolute inset-0 z-20 flex flex-col items-center justify-center p-12 text-center opacity-0 group-hover:opacity-100 transition-all duration-700 translate-y-4 group-hover:translate-y-0">
                                 <div className="flex gap-4">
-                                    <button className="flex items-center gap-2 px-6 py-3 bg-white text-black uppercase tracking-widest text-[10px] font-bold hover:bg-gold transition-colors duration-500">
+                                    <button className="flex items-center gap-2 px-6 py-3 bg-white text-foreground uppercase tracking-widest text-[10px] font-bold hover:bg-gold hover:text-white transition-colors duration-500">
                                         <Eye size={14} />
                                         Preview
                                     </button>
-                                    <button className="p-3 border border-white/30 text-white hover:border-gold hover:text-gold transition-all duration-500">
+                                    <button className="p-3 border border-white/40 text-white hover:border-gold hover:text-gold transition-all duration-500">
                                         <ArrowRight size={18} />
                                     </button>
                                 </div>
@@ -195,7 +195,7 @@ export function TilesGallery() {
                     <div className="mt-16 text-center">
                         <button
                             onClick={() => setShowAll(true)}
-                            className="group relative inline-flex items-center gap-4 px-12 py-5 border border-white/10 text-white uppercase tracking-[0.3em] text-xs hover:border-gold transition-all duration-700"
+                            className="group relative inline-flex items-center gap-4 px-12 py-5 border border-black/10 text-foreground uppercase tracking-[0.3em] text-xs hover:border-gold transition-all duration-700"
                         >
                             <Plus size={16} className="text-gold group-hover:rotate-180 transition-transform duration-700" />
                             <span>View All Marbles ({allMarbles.length})</span>
@@ -207,17 +207,17 @@ export function TilesGallery() {
 
             {/* Marble Preview Modal */}
             <Dialog open={!!selectedMarble} onOpenChange={(open) => !open && setSelectedMarble(null)}>
-                <DialogContent className="bg-[#0e0e0e] border-white/5 text-white max-w-5xl p-0 overflow-hidden shadow-[0_0_100px_rgba(0,0,0,0.8)]">
+                <DialogContent className="bg-white border-black/10 text-foreground max-w-5xl p-0 overflow-hidden shadow-2xl">
                     {selectedMarble && (
-                        <div className="relative h-[85vh] flex items-center justify-center p-8">
+                        <div className="relative h-[85vh] flex items-center justify-center p-8 bg-secondary">
                             <img
                                 src={selectedMarble.image}
                                 className="w-full h-full object-contain"
                                 alt={selectedMarble.name}
                             />
-                            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 to-transparent p-8">
+                            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-8">
                                 <h3 className="text-3xl font-serif text-white">{selectedMarble.name}</h3>
-                                <p className="text-white/60 mt-2 font-light">Premium Marble Collection</p>
+                                <p className="text-white/70 mt-2 font-light">Premium Marble Collection</p>
                             </div>
                         </div>
                     )}

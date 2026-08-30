@@ -1,5 +1,6 @@
 import type { Express, Request, Response, NextFunction } from "express";
 import { type Server } from "http";
+import rateLimit from "express-rate-limit";
 import { storage } from "./storage.js";
 import { setupAuth } from "./auth.js";
 import {
@@ -7,6 +8,15 @@ import {
   insertSliderImageSchema, insertMapLocationSchema, insertSiteContentSchema,
   type User
 } from "./shared/schema.js";
+
+const MAX_UPLOAD_BYTES = 8 * 1024 * 1024; // 8MB, decoded
+
+const uploadLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  limit: 30,
+  standardHeaders: true,
+  legacyHeaders: false,
+});
 
 // Middleware for RBAC
 function checkRole(roles: string[]) {
@@ -154,12 +164,21 @@ export async function registerRoutes(
     res.json(content);
   });
 
-  // Generic Image Upload (Public)
-  app.post("/api/upload", async (req, res) => {
-    if (!req.body.image) return res.status(400).send("No image data provided");
+  // Generic Image Upload (Public — used by the contact form's reference-image
+  // field and the admin "click to edit" feature, so it can't require auth).
+  app.post("/api/upload", uploadLimiter, async (req, res) => {
+    const image = req.body.image;
+    if (typeof image !== "string" || !/^data:image\/(png|jpe?g|webp|gif);base64,/.test(image)) {
+      return res.status(400).send("Image must be a base64-encoded PNG, JPEG, WEBP, or GIF data URL");
+    }
+    const base64Length = image.length - image.indexOf(",") - 1;
+    const approxBytes = base64Length * 0.75;
+    if (approxBytes > MAX_UPLOAD_BYTES) {
+      return res.status(413).send("Image is too large (max 8MB)");
+    }
     // In a real app, this would save to disk/S3. Here we just return the data URL or a mock path.
     // For the "Click to edit" feature, we'll store the provided data as is.
-    res.json({ url: req.body.image });
+    res.json({ url: image });
   });
 
   // Profile Management
@@ -170,13 +189,13 @@ export async function registerRoutes(
 
     let update: Partial<User> = {};
     if (username) update.username = username;
+    const { hashPassword, sanitizeUser } = await import("./auth.js");
     if (password) {
-      const { hashPassword } = await import("./auth.js");
       update.passwordHash = await hashPassword(password);
     }
 
     const updatedUser = await storage.updateUser(user.id, update);
-    res.json(updatedUser);
+    res.json(sanitizeUser(updatedUser));
   });
 
   // --- Admin APIs (ENQUIRIES ONLY) ---
@@ -188,6 +207,9 @@ export async function registerRoutes(
 
   app.patch("/api/admin/enquiries/:id/status", isAdmin, async (req, res) => {
     const id = String(req.params.id);
+    if (req.body.status !== "new" && req.body.status !== "contacted") {
+      return res.status(400).send('status must be "new" or "contacted"');
+    }
     const enquiry = await storage.updateEnquiryStatus(id, req.body.status);
     res.json(enquiry);
   });

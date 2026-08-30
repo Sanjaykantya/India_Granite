@@ -35,7 +35,7 @@ export function TileFormModal({ open, onOpenChange }: { open: boolean; onOpenCha
 
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
-            <DialogContent className="bg-[#0e0e0e] border-white/5 text-white">
+            <DialogContent className="bg-white border-black/5 text-foreground">
                 <DialogHeader>
                     <DialogTitle className="font-serif uppercase tracking-widest">Add Premium Tile</DialogTitle>
                 </DialogHeader>
@@ -48,7 +48,7 @@ export function TileFormModal({ open, onOpenChange }: { open: boolean; onOpenCha
                                 <FormItem>
                                     <FormLabel className="text-gold uppercase tracking-widest text-[10px]">Tile Name</FormLabel>
                                     <FormControl>
-                                        <Input {...field} className="bg-white/5 border-white/10" placeholder="e.g. Carrara White" />
+                                        <Input {...field} className="bg-secondary border-black/10" placeholder="e.g. Carrara White" />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
@@ -61,7 +61,7 @@ export function TileFormModal({ open, onOpenChange }: { open: boolean; onOpenCha
                                 <FormItem>
                                     <FormLabel className="text-gold uppercase tracking-widest text-[10px]">Image URL</FormLabel>
                                     <FormControl>
-                                        <Input {...field} className="bg-white/5 border-white/10" placeholder="https://..." />
+                                        <Input {...field} className="bg-secondary border-black/10" placeholder="https://..." />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
@@ -74,13 +74,13 @@ export function TileFormModal({ open, onOpenChange }: { open: boolean; onOpenCha
                                 <FormItem>
                                     <FormLabel className="text-gold uppercase tracking-widest text-[10px]">Display Order</FormLabel>
                                     <FormControl>
-                                        <Input type="number" {...field} onChange={e => field.onChange(parseInt(e.target.value))} className="bg-white/5 border-white/10" />
+                                        <Input type="number" {...field} onChange={e => field.onChange(parseInt(e.target.value))} className="bg-secondary border-black/10" />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
                             )}
                         />
-                        <Button type="submit" className="w-full bg-gold text-black hover:bg-white transition-colors py-6 font-bold uppercase tracking-widest" disabled={mutation.isPending}>
+                        <Button type="submit" className="w-full bg-gold text-white hover:bg-gold-dark transition-colors py-6 font-bold uppercase tracking-widest" disabled={mutation.isPending}>
                             {mutation.isPending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                             Save Tile
                         </Button>

@@ -2,13 +2,21 @@ import passport from "passport";
 import { Strategy as LocalStrategy } from "passport-local";
 import { Express } from "express";
 import session from "express-session";
+import rateLimit from "express-rate-limit";
 import { storage } from "./storage.js";
 import { type User as SelectUser } from "./shared/schema.js";
-import crypto from "crypto";
 import { scrypt, randomBytes, timingSafeEqual } from "crypto";
 import { promisify } from "util";
 
 const scryptAsync = promisify(scrypt);
+
+const loginLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    limit: 20,
+    standardHeaders: true,
+    legacyHeaders: false,
+    skipSuccessfulRequests: true,
+});
 
 async function hashPassword(password: string) {
     const salt = randomBytes(16).toString("hex");
@@ -23,6 +31,11 @@ async function comparePasswords(supplied: string, stored: string) {
     return timingSafeEqual(hashedBuf, suppliedBuf);
 }
 
+function sanitizeUser(user: SelectUser) {
+    const { passwordHash, ...safeUser } = user;
+    return safeUser;
+}
+
 declare global {
     namespace Express {
         interface User extends SelectUser { }
@@ -31,8 +44,14 @@ declare global {
 
 export function setupAuth(app: Express) {
     const isProduction = process.env.NODE_ENV === "production";
+    if (!process.env.SESSION_SECRET) {
+        console.warn(
+            "SESSION_SECRET environment variable is not set. Using a random secret generated at startup " +
+            "(sessions will not survive a server restart). Set SESSION_SECRET in production."
+        );
+    }
     const sessionSettings: session.SessionOptions = {
-        secret: process.env.SESSION_SECRET || "lux-granite-secret",
+        secret: process.env.SESSION_SECRET || randomBytes(32).toString("hex"),
         resave: false,
         saveUninitialized: false,
         cookie: {
@@ -75,30 +94,15 @@ export function setupAuth(app: Express) {
         }
     });
 
-    app.post("/api/register", async (req, res, next) => {
-        try {
-            const existingUser = await storage.getUserByUsername(req.body.username);
-            if (existingUser) {
-                return res.status(400).send("Username already exists");
-            }
+    // Note: there is no public /api/register endpoint. This app has a single
+    // seeded admin account (see routes.ts); the frontend only exposes a login
+    // form (client/src/pages/AuthPage.tsx). Adding self-registration back would
+    // let anyone create an account — if that's ever needed, it must validate
+    // the request body against insertUserSchema and hardcode role to "public",
+    // never trust a client-supplied role.
 
-            const hashedPassword = await hashPassword(req.body.password);
-            const user = await storage.createUser({
-                ...req.body,
-                passwordHash: hashedPassword,
-            });
-
-            req.login(user, (err) => {
-                if (err) return next(err);
-                res.status(201).json(user);
-            });
-        } catch (err) {
-            next(err);
-        }
-    });
-
-    app.post("/api/login", passport.authenticate("local"), (req, res) => {
-        res.json(req.user);
+    app.post("/api/login", loginLimiter, passport.authenticate("local"), (req, res) => {
+        res.json(sanitizeUser(req.user!));
     });
 
     app.post("/api/logout", (req, res, next) => {
@@ -110,8 +114,8 @@ export function setupAuth(app: Express) {
 
     app.get("/api/user", (req, res) => {
         if (!req.isAuthenticated()) return res.sendStatus(401);
-        res.json(req.user);
+        res.json(sanitizeUser(req.user));
     });
 }
 
-export { hashPassword };
+export { hashPassword, sanitizeUser };

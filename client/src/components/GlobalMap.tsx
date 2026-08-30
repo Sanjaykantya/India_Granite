@@ -21,9 +21,9 @@ export function GlobalMap() {
    ];
 
    return (
-      <section id="global" className="py-24 bg-[#050505] relative overflow-hidden">
+      <section id="global" className="py-24 bg-secondary relative overflow-hidden">
          {/* Background Decorative Elements */}
-         <div className="absolute top-0 left-0 w-full h-full opacity-20 pointer-events-none">
+         <div className="absolute top-0 left-0 w-full h-full opacity-30 pointer-events-none">
             <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gold/10 rounded-full blur-[120px]" />
             <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gold/5 rounded-full blur-[120px]" />
          </div>
@@ -42,22 +42,22 @@ export function GlobalMap() {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 }}
-                  className="text-4xl md:text-7xl font-serif text-white uppercase tracking-tight"
+                  className="text-4xl md:text-7xl font-serif text-foreground uppercase tracking-tight"
                >
                   Our Presence <span className="text-gold italic">Across the World</span>
                </motion.h2>
             </div>
 
-            <div className="relative w-full max-w-6xl mx-auto aspect-[16/9] bg-[#0a0a0a]/50 rounded-3xl border border-white/5 overflow-hidden shadow-2xl group transition-all duration-700 hover:border-white/10">
+            <div className="relative w-full max-w-6xl mx-auto aspect-[16/9] bg-white rounded-3xl border border-black/5 overflow-hidden shadow-xl group transition-all duration-700 hover:border-gold/20">
                {/* Background Glow */}
-               <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,#111,transparent)]" />
+               <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(184,143,58,0.06),transparent)]" />
 
                {/* India "Small Circle" Visual Grouping */}
                <motion.div
                   initial={{ opacity: 0, scale: 0.8 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 2 }}
-                  className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 rounded-full border border-gold/10 bg-gold/[0.02] pointer-events-none"
+                  className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 rounded-full border border-gold/15 bg-gold/[0.03] pointer-events-none"
                />
 
                <TooltipProvider>
@@ -71,26 +71,26 @@ export function GlobalMap() {
                                  transition={{ delay: 0.1 + i * 0.05, type: "spring" }}
                                  className="relative cursor-pointer group/dot"
                               >
-                                 <div className="w-3 h-3 bg-yellow-400 rounded-full shadow-[0_0_20px_rgba(250,204,21,0.6)] group-hover/dot:scale-150 transition-transform duration-300" />
-                                 <div className="absolute inset-0 w-3 h-3 bg-yellow-400 rounded-full animate-ping opacity-30" />
+                                 <div className="w-3 h-3 bg-gold rounded-full shadow-[0_0_16px_rgba(184,143,58,0.6)] group-hover/dot:scale-150 transition-transform duration-300" />
+                                 <div className="absolute inset-0 w-3 h-3 bg-gold rounded-full animate-ping opacity-30" />
 
                                  {/* Dynamic Label Placement to avoid overlap */}
-                                 <div className={`absolute pointer-events-none opacity-80 group-hover/dot:opacity-100 transition-opacity whitespace-nowrap
+                                 <div className={`absolute pointer-events-none opacity-90 group-hover/dot:opacity-100 transition-opacity whitespace-nowrap
                                     ${loc.labelPos === 'right' ? 'left-6 top-1/2 -translate-y-1/2' : ''}
                                     ${loc.labelPos === 'left' ? 'right-6 top-1/2 -translate-y-1/2' : ''}
                                     ${loc.labelPos === 'top' ? 'left-1/2 -translate-x-1/2 bottom-6' : ''}
                                     ${loc.labelPos === 'bottom' ? 'left-1/2 -translate-x-1/2 top-6' : ''}
                                  `}>
-                                    <span className="text-[10px] font-bold text-white/90 uppercase tracking-[0.2em] bg-black/60 px-2 py-1 rounded backdrop-blur-md border border-white/10">
+                                    <span className="text-[10px] font-bold text-foreground uppercase tracking-[0.2em] bg-white px-2 py-1 rounded shadow-sm border border-black/5">
                                        {loc.name}
                                     </span>
                                  </div>
                               </motion.div>
                            </TooltipTrigger>
-                           <TooltipContent className="bg-black/95 border border-gold/20 text-white p-3 shadow-2xl">
+                           <TooltipContent className="bg-white border border-gold/20 text-foreground p-3 shadow-xl">
                               <div className="flex flex-col gap-1">
                                  <span className="text-xs font-bold uppercase tracking-widest text-gold">{loc.name}</span>
-                                 <span className="text-[10px] text-white/50 uppercase tracking-widest">{loc.type} Hub</span>
+                                 <span className="text-[10px] text-foreground/50 uppercase tracking-widest">{loc.type} Hub</span>
                               </div>
                            </TooltipContent>
                         </Tooltip>
@@ -99,8 +99,8 @@ export function GlobalMap() {
                </TooltipProvider>
 
                {/* Decorative Grid Lines */}
-               <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-[0.03]">
-                  <div className="w-full h-full bg-[linear-gradient(to_right,#fff_1px,transparent_1px),linear-gradient(to_bottom,#fff_1px,transparent_1px)] bg-[size:40px_40px]" />
+               <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-[0.04]">
+                  <div className="w-full h-full bg-[linear-gradient(to_right,#000_1px,transparent_1px),linear-gradient(to_bottom,#000_1px,transparent_1px)] bg-[size:40px_40px]" />
                </div>
             </div>
 
@@ -116,10 +116,10 @@ export function GlobalMap() {
                      initial={{ opacity: 0, y: 20 }}
                      whileInView={{ opacity: 1, y: 0 }}
                      transition={{ delay: i * 0.1 }}
-                     className="glass-panel p-8 rounded-2xl border border-white/5 bg-white/5 backdrop-blur-xl"
+                     className="glass-card p-8 rounded-2xl"
                   >
                      <div className="text-4xl font-serif text-gold mb-3">{stat.value}</div>
-                     <div className="text-[11px] uppercase tracking-[0.3em] text-white/40 font-bold">{stat.label}</div>
+                     <div className="text-[11px] uppercase tracking-[0.3em] text-foreground/50 font-bold">{stat.label}</div>
                   </motion.div>
                ))}
             </div>

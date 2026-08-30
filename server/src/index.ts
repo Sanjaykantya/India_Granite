@@ -3,7 +3,7 @@ import { setupApp } from "./app.js";
 
 import { type Request, Response, NextFunction } from "express";
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 
 let appInstance: any;
 

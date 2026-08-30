@@ -74,7 +74,7 @@ export function GraniteGallery() {
   }, []);
 
   return (
-    <section id="collection" className="py-24 bg-[#0a0a0a]">
+    <section id="collection" className="py-24 bg-secondary">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <motion.span
@@ -90,7 +90,7 @@ export function GraniteGallery() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-4xl md:text-6xl font-serif text-white mt-4"
+            className="text-4xl md:text-6xl font-serif text-foreground mt-4"
           >
             Our Best Granite Selection
           </motion.h2>
@@ -104,8 +104,8 @@ export function GraniteGallery() {
               key={cat}
               onClick={() => setFilter(cat)}
               className={`px-8 py-3 rounded-full text-[10px] uppercase tracking-widest transition-all duration-500 border ${filter === cat
-                ? "bg-gold text-black border-gold shadow-[0_5px_15px_rgba(212,175,55,0.3)]"
-                : "bg-transparent text-white/40 border-white/5 hover:border-white/20 hover:text-white"
+                ? "bg-gold text-white border-gold shadow-[0_5px_15px_rgba(184,143,58,0.3)]"
+                : "bg-transparent text-foreground/40 border-black/10 hover:border-black/25 hover:text-foreground"
                 }`}
             >
               {cat}
@@ -133,7 +133,7 @@ export function GraniteGallery() {
                   className="group relative h-[400px] md:h-[500px] overflow-hidden rounded-lg cursor-pointer glass-card"
                   onClick={() => setSelectedGranite(currentGranite)}
                 >
-                  <div className="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition-all duration-700 z-10" />
+                  <div className="absolute inset-0 bg-black/10 group-hover:bg-black/30 transition-all duration-700 z-10" />
 
                   {isFirstCard ? (
                     // Auto-slideshow on first card
@@ -165,7 +165,7 @@ export function GraniteGallery() {
                   )}
 
                   {/* Decorative Elements */}
-                  <div className="absolute inset-6 border border-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-20 pointer-events-none" />
+                  <div className="absolute inset-6 border border-white/30 opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-20 pointer-events-none" />
 
                   {/* Slideshow indicator on first card */}
                   {isFirstCard && (
@@ -173,7 +173,7 @@ export function GraniteGallery() {
                       {remainingGranites.map((_, idx) => (
                         <div
                           key={idx}
-                          className={`h-0.5 rounded-full transition-all duration-500 ${idx === heroSlideIndex % remainingGranites.length ? "bg-gold w-4" : "bg-white/30 w-2"
+                          className={`h-0.5 rounded-full transition-all duration-500 ${idx === heroSlideIndex % remainingGranites.length ? "bg-gold w-4" : "bg-white/40 w-2"
                             }`}
                         />
                       ))}
@@ -190,7 +190,7 @@ export function GraniteGallery() {
           <div className="mt-20 text-center">
             <button
               onClick={() => setShowAll(true)}
-              className="group relative inline-flex items-center gap-4 px-12 py-5 border border-white/10 text-white uppercase tracking-[0.3em] text-xs hover:border-gold transition-all duration-700"
+              className="group relative inline-flex items-center gap-4 px-12 py-5 border border-black/10 text-foreground uppercase tracking-[0.3em] text-xs hover:border-gold transition-all duration-700"
             >
               <Plus size={16} className="text-gold group-hover:rotate-180 transition-transform duration-700" />
               <span>Explore More Granites</span>
@@ -201,7 +201,7 @@ export function GraniteGallery() {
 
         {/* Modal — shows only the zoomed image + Contact Us button */}
         <Dialog open={!!selectedGranite} onOpenChange={(open) => !open && setSelectedGranite(null)}>
-          <DialogContent className="bg-[#0e0e0e] border-white/5 text-white max-w-4xl p-0 overflow-hidden shadow-[0_0_100px_rgba(0,0,0,0.8)]">
+          <DialogContent className="bg-white border-black/10 text-foreground max-w-4xl p-0 overflow-hidden shadow-2xl">
             {selectedGranite && (
               <div className="relative flex flex-col items-center">
                 {/* Full zoomed image */}
@@ -215,49 +215,15 @@ export function GraniteGallery() {
                 </div>
 
                 {/* Contact Us button */}
-                <div className="w-full px-8 py-6 bg-[#111] flex justify-center">
+                <div className="w-full px-8 py-6 bg-secondary flex justify-center">
                   <a
                     href="#contact"
                     onClick={() => setSelectedGranite(null)}
-                    className="inline-block px-16 py-4 bg-gold text-black uppercase tracking-widest text-xs font-bold hover:bg-white transition-all duration-500"
+                    className="inline-block px-16 py-4 bg-gold text-white uppercase tracking-widest text-xs font-bold hover:bg-gold-dark transition-all duration-500"
                   >
                     Contact Us for This Material
                   </a>
                 </div>
-
-                {/*
-                  ╔══════════════════════════════════════════════════════════╗
-                  ║  COMMENTED OUT — Product info to be corrected later      ║
-                  ╚══════════════════════════════════════════════════════════╝
-
-                  <span className="text-gold uppercase tracking-[0.4em] text-xs mb-4">
-                    {selectedGranite.category} Series
-                  </span>
-
-                  <p className="text-white/60 font-light leading-relaxed mb-12 text-lg">
-                    A testament to nature's artistry. Our {selectedGranite.name} granite offers unparalleled depth
-                    and durability. Processed with state-of-the-art Italian technology to ensure a mirror-like
-                    finish that lasts a lifetime.
-                  </p>
-
-                  <div className="grid grid-cols-2 gap-8 mb-12 border-y border-white/5 py-8">
-                    <div>
-                      <span className="block text-white/30 text-[10px] uppercase tracking-widest mb-1">Origin</span>
-                      <span className="text-white text-sm">Rajasthan, India</span>
-                    </div>
-                    <div>
-                      <span className="block text-white/30 text-[10px] uppercase tracking-widest mb-1">Finish</span>
-                      <span className="text-white text-sm">High Polish / Leather</span>
-                    </div>
-                  </div>
-
-                  <button className="w-full py-5 bg-gold text-black uppercase tracking-widest text-xs hover:bg-white transition-all duration-500 font-bold">
-                    Request Quotation
-                  </button>
-                  <button className="w-full py-5 border border-white/10 text-white uppercase tracking-widest text-xs hover:border-gold hover:text-gold transition-all duration-500">
-                    Technical Data Sheet
-                  </button>
-                */}
               </div>
             )}
           </DialogContent>

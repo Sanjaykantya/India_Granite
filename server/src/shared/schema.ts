@@ -40,6 +40,7 @@ export const enquiries = pgTable("enquiries", {
   quantity: text("quantity"),
   referenceImageUrl: text("reference_image_url"),
   message: text("message"),
+  status: text("status", { enum: ["new", "contacted"] }).notNull().default("new"),
   createdAt: timestamp("created_at").defaultNow(),
 });
 

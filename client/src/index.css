@@ -4,50 +4,55 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --color-background: hsl(0 0% 5.5%); /* #0E0E0E */
-  --color-foreground: hsl(0 0% 100%); /* White */
-  
-  --color-gold: hsl(46 65% 52%); /* #D4AF37 */
-  --color-gold-light: hsl(46 65% 65%);
-  --color-gold-dark: hsl(46 65% 40%);
+  --color-background: hsl(40 33% 98%); /* warm ivory */
+  --color-foreground: hsl(20 14% 12%); /* deep warm charcoal */
 
-  --color-card: hsl(0 0% 8% / 0.5); /* Glassmorphism base */
-  --color-card-foreground: hsl(0 0% 100%);
-  
-  --color-popover: hsl(0 0% 5.5%);
-  --color-popover-foreground: hsl(0 0% 100%);
-  
-  --color-primary: hsl(46 65% 52%);
-  --color-primary-foreground: hsl(0 0% 5.5%);
-  
-  --color-secondary: hsl(0 0% 15%);
-  --color-secondary-foreground: hsl(0 0% 100%);
-  
-  --color-muted: hsl(0 0% 15%);
-  --color-muted-foreground: hsl(0 0% 60%);
-  
-  --color-accent: hsl(46 65% 52%);
-  --color-accent-foreground: hsl(0 0% 5.5%);
-  
-  --color-destructive: hsl(0 62% 30%);
+  --color-gold: hsl(38 58% 42%); /* deepened bronze-gold, AA-contrast on ivory */
+  --color-gold-light: hsl(42 62% 54%);
+  --color-gold-dark: hsl(35 55% 30%);
+
+  --color-card: hsl(0 0% 100%);
+  --color-card-foreground: hsl(20 14% 12%);
+
+  --color-popover: hsl(0 0% 100%);
+  --color-popover-foreground: hsl(20 14% 12%);
+
+  --color-primary: hsl(38 58% 42%);
+  --color-primary-foreground: hsl(0 0% 100%);
+
+  --color-secondary: hsl(40 20% 94%);
+  --color-secondary-foreground: hsl(20 14% 12%);
+
+  --color-muted: hsl(40 20% 94%);
+  --color-muted-foreground: hsl(25 10% 40%);
+
+  --color-accent: hsl(38 58% 42%);
+  --color-accent-foreground: hsl(0 0% 100%);
+
+  --color-destructive: hsl(0 65% 42%);
   --color-destructive-foreground: hsl(0 0% 100%);
-  
-  --color-border: hsl(0 0% 20%);
-  --color-input: hsl(0 0% 20%);
-  --color-ring: hsl(46 65% 52%);
-  
+
+  --color-border: hsl(30 15% 88%);
+  --color-input: hsl(30 15% 88%);
+  --color-ring: hsl(38 58% 42%);
+
   --font-serif: "Playfair Display", serif;
   --font-sans: "Montserrat", sans-serif;
-  
+
   --radius-sm: 0.2rem;
   --radius-md: 0.4rem;
   --radius-lg: 0.6rem;
-  
+
   --animate-slow-zoom: slow-zoom 20s infinite alternate;
-  
+  --animate-fade-up: fade-up 0.6s ease-out both;
+
   @keyframes slow-zoom {
     0% { transform: scale(1); }
     100% { transform: scale(1.1); }
+  }
+  @keyframes fade-up {
+    0% { opacity: 0; transform: translateY(12px); }
+    100% { opacity: 1; transform: translateY(0); }
   }
 }
 
@@ -56,7 +61,7 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground font-sans antialiased selection:bg-gold/30 selection:text-gold;
+    @apply bg-background text-foreground font-sans antialiased selection:bg-gold/20 selection:text-gold-dark;
   }
   h1, h2, h3, h4, h5, h6 {
     @apply font-serif tracking-tight;
@@ -73,22 +78,22 @@
   .border-gold {
     border-color: var(--color-gold);
   }
-  
-  /* Luxury Glassmorphism */
+
+  /* Light, airy panels replacing the old dark glassmorphism */
   .glass-panel {
-    @apply bg-white/5 backdrop-blur-md border border-white/10 shadow-xl;
+    @apply bg-white/85 backdrop-blur-md border border-black/5 shadow-lg shadow-black/5;
   }
-  
+
   .glass-card {
-    @apply bg-white/5 backdrop-blur-sm border border-white/5 hover:border-gold/50 transition-all duration-500 hover:shadow-[0_0_30px_rgba(212,175,55,0.1)];
+    @apply bg-white border border-black/5 hover:border-gold/40 transition-all duration-300 shadow-sm hover:shadow-xl hover:shadow-gold/10;
   }
 
   .text-gradient-gold {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#D4AF37] via-[#F6E27A] to-[#D4AF37];
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#8A6423] via-[#C89A4A] to-[#8A6423];
   }
-  
+
   .gold-glow {
-    box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+    box-shadow: 0 0 24px rgba(184, 143, 58, 0.18);
   }
 
   /* Custom Scrollbar */
@@ -96,13 +101,13 @@
     width: 6px;
   }
   ::-webkit-scrollbar-track {
-    background: #0E0E0E;
+    background: hsl(40 33% 96%);
   }
   ::-webkit-scrollbar-thumb {
-    background: #333;
+    background: hsl(30 12% 80%);
     border-radius: 3px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #D4AF37;
+    background: #B8873A;
   }
 }

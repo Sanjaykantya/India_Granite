@@ -17,7 +17,7 @@ export function ApplicationShowcase() {
    const prevSlide = () => setCurrentIndex((prev) => (prev - 1 + showcaseItems.length) % showcaseItems.length);
 
    return (
-      <section id="showcase" className="py-24 bg-black overflow-hidden">
+      <section id="showcase" className="py-24 bg-secondary overflow-hidden">
          <div className="container mx-auto px-6">
             <div className="flex flex-col md:flex-row justify-between items-end mb-16">
                <div className="max-w-2xl">
@@ -31,29 +31,29 @@ export function ApplicationShowcase() {
                   <motion.h2
                      initial={{ opacity: 0, x: -20 }}
                      whileInView={{ opacity: 1, x: 0 }}
-                     className="text-4xl md:text-7xl font-serif text-white tracking-tight leading-tight"
+                     className="text-4xl md:text-7xl font-serif text-foreground tracking-tight leading-tight"
                   >
-                     Spaces <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/40 to-white">Transformed</span>
+                     Spaces <span className="text-transparent bg-clip-text bg-gradient-to-r from-foreground via-foreground/40 to-foreground">Transformed</span>
                   </motion.h2>
                </div>
 
                <div className="flex gap-2 mt-8 md:mt-0">
                   <button
                      onClick={prevSlide}
-                     className="w-16 h-16 rounded-full border border-white/10 text-white hover:border-gold hover:text-gold transition-all duration-500 flex items-center justify-center backdrop-blur-sm"
+                     className="w-16 h-16 rounded-full border border-black/10 text-foreground hover:border-gold hover:text-gold transition-all duration-500 flex items-center justify-center"
                   >
                      <ChevronLeft size={24} />
                   </button>
                   <button
                      onClick={nextSlide}
-                     className="w-16 h-16 rounded-full border border-white/10 text-white hover:border-gold hover:text-gold transition-all duration-500 flex items-center justify-center backdrop-blur-sm"
+                     className="w-16 h-16 rounded-full border border-black/10 text-foreground hover:border-gold hover:text-gold transition-all duration-500 flex items-center justify-center"
                   >
                      <ChevronRight size={24} />
                   </button>
                </div>
             </div>
 
-            <div className="relative h-[650px] w-full rounded-3xl overflow-hidden glass-panel">
+            <div className="relative h-[650px] w-full rounded-3xl overflow-hidden shadow-xl">
                <AnimatePresence mode="wait">
                   <motion.div
                      key={currentIndex}
@@ -68,6 +68,7 @@ export function ApplicationShowcase() {
                         className="w-full h-full object-cover grayscale-[0.2] hover:grayscale-0 transition-all duration-1000"
                         alt={showcaseItems[currentIndex].title}
                      />
+                     {/* Dark scrim over the photo itself, for caption legibility — independent of page theme */}
                      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
                      <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-transparent to-transparent" />
 
@@ -77,14 +78,6 @@ export function ApplicationShowcase() {
                            animate={{ opacity: 1, y: 0 }}
                            transition={{ delay: 0.5 }}
                         >
-                           {/* 
-                           <h3 className="text-5xl md:text-7xl font-serif text-white mb-6">
-                              {showcaseItems[currentIndex].title}
-                           </h3>
-                           <p className="text-white/60 font-light text-lg mb-10 tracking-wide max-w-md">
-                              {showcaseItems[currentIndex].desc}
-                           </p>
-                           */}
                            <button className="flex items-center gap-4 group">
                               <span className="w-12 h-px bg-gold group-hover:w-24 transition-all duration-700" />
                               <span className="text-gold uppercase tracking-[0.3em] text-xs font-bold group-hover:text-white transition-colors">
@@ -95,7 +88,7 @@ export function ApplicationShowcase() {
                      </div>
 
                      {/* Slide Indicator */}
-                     <div className="absolute top-12 right-12 text-white/20 font-serif text-6xl">
+                     <div className="absolute top-12 right-12 text-white/30 font-serif text-6xl">
                         0{currentIndex + 1}
                      </div>
                   </motion.div>

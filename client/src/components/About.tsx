@@ -4,9 +4,9 @@ import { useRef } from "react";
 
 function Counter({ value, label }: { value: string; label: string }) {
   return (
-    <div className="text-center p-6 glass-card border border-white/5">
+    <div className="text-center p-6 glass-card rounded-lg">
       <h3 className="text-4xl md:text-5xl font-serif text-gold mb-2">{value}</h3>
-      <p className="text-white/60 uppercase tracking-widest text-xs">{label}</p>
+      <p className="text-foreground/60 uppercase tracking-widest text-xs">{label}</p>
     </div>
   );
 }
@@ -16,7 +16,7 @@ export function About() {
   const isInView = useInView(ref, { once: true, amount: 0.3 });
 
   return (
-    <section id="about" className="py-32 relative overflow-hidden bg-black">
+    <section id="about" className="py-32 relative overflow-hidden bg-background">
       {/* Decorative Gold Line */}
       <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-px h-32 bg-gradient-to-b from-transparent via-gold to-transparent opacity-50"></div>
 
@@ -26,7 +26,7 @@ export function About() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-3xl md:text-5xl font-serif text-white mb-8 leading-tight"
+            className="text-3xl md:text-5xl font-serif text-foreground mb-8 leading-tight"
           >
             15+ Years of <span className="text-gold italic">Excellence</span> in Stone Craftsmanship
           </motion.h2>
@@ -34,7 +34,7 @@ export function About() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-white/60 leading-relaxed font-light text-lg"
+            className="text-foreground/60 leading-relaxed font-light text-lg"
           >
             Rooted in the rich mineral landscapes of Rajasthan, India Granite has evolved into a global symbol of luxury. We don't just supply stone; we curate the earth's finest art for the world's most prestigious spaces.
           </motion.p>

@@ -27,12 +27,12 @@ export function Navbar() {
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled ? "bg-black/80 backdrop-blur-md py-4" : "bg-transparent py-6"
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled ? "bg-white/90 backdrop-blur-md py-4 shadow-sm shadow-black/5 border-b border-black/5" : "bg-transparent py-6"
           }`}
       >
         <div className="container mx-auto px-6 flex justify-between items-center">
           <Link href="/">
-            <span className="text-2xl md:text-3xl font-serif text-white tracking-widest uppercase cursor-pointer hover:text-gold transition-colors">
+            <span className="text-2xl md:text-3xl font-serif tracking-widest uppercase cursor-pointer hover:text-gold transition-colors text-foreground">
               India <span className="text-gold">Granite</span>
             </span>
           </Link>
@@ -43,7 +43,7 @@ export function Navbar() {
               <a
                 key={link.name}
                 href={link.href}
-                className="text-sm uppercase tracking-widest text-white/80 hover:text-gold transition-colors relative group"
+                className="text-sm uppercase tracking-widest hover:text-gold transition-colors relative group text-foreground/70"
               >
                 {link.name}
                 <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-gold transition-all duration-300 group-hover:w-full"></span>
@@ -51,7 +51,7 @@ export function Navbar() {
             ))}
             <button
               onClick={() => setContactOpen(true)}
-              className="px-6 py-2 border border-gold/50 text-gold hover:bg-gold hover:text-black transition-all duration-300 uppercase text-xs tracking-widest"
+              className="px-6 py-2 border border-gold/50 text-gold hover:bg-gold hover:text-white transition-all duration-300 uppercase text-xs tracking-widest"
             >
               Contact Us
             </button>
@@ -61,7 +61,7 @@ export function Navbar() {
           <div className="md:hidden">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="text-white hover:text-gold"
+              className="hover:text-gold transition-colors text-foreground"
             >
               {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -75,7 +75,7 @@ export function Navbar() {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
-              className="md:hidden bg-black/95 border-b border-white/10"
+              className="md:hidden bg-white/95 backdrop-blur-md border-b border-black/5 shadow-sm"
             >
               <div className="flex flex-col items-center py-8 space-y-6">
                 {navLinks.map((link) => (
@@ -83,7 +83,7 @@ export function Navbar() {
                     key={link.name}
                     href={link.href}
                     onClick={() => setMobileMenuOpen(false)}
-                    className="text-lg uppercase tracking-widest text-white hover:text-gold"
+                    className="text-lg uppercase tracking-widest text-foreground hover:text-gold"
                   >
                     {link.name}
                   </a>
@@ -93,7 +93,7 @@ export function Navbar() {
                     setContactOpen(true);
                     setMobileMenuOpen(false);
                   }}
-                  className="px-8 py-3 border border-gold text-gold hover:bg-gold hover:text-black uppercase text-sm tracking-widest"
+                  className="px-8 py-3 border border-gold text-gold hover:bg-gold hover:text-white uppercase text-sm tracking-widest"
                 >
                   Contact Us
                 </button>

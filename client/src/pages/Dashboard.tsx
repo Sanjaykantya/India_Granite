@@ -27,28 +27,28 @@ export default function Dashboard() {
     if (!user) return null;
 
     return (
-        <div className="min-h-screen bg-[#050505] text-white transition-colors duration-500">
+        <div className="min-h-screen bg-background text-foreground transition-colors duration-500">
             {/* Decorative background */}
-            <div className="fixed inset-0 pointer-events-none opacity-20 bg-[radial-gradient(circle_at_top_right,#d4af3711,transparent_50%)]" />
+            <div className="fixed inset-0 pointer-events-none opacity-60 bg-[radial-gradient(circle_at_top_right,rgba(184,143,58,0.06),transparent_50%)]" />
 
             {/* Top Bar */}
-            <div className="border-b border-white/5 bg-[#0a0a0a]/80 backdrop-blur-lg sticky top-0 z-50">
+            <div className="border-b border-black/5 bg-white/80 backdrop-blur-lg sticky top-0 z-50">
                 <div className="max-w-7xl mx-auto px-8 py-4 flex justify-between items-center">
                     <div className="flex items-center gap-4">
                         <div className="w-10 h-10 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center">
                             <ShieldCheck className="text-gold w-5 h-5" />
                         </div>
                         <div>
-                            <h1 className="text-lg font-serif text-white uppercase tracking-widest">Admin Panel</h1>
+                            <h1 className="text-lg font-serif text-foreground uppercase tracking-widest">Admin Panel</h1>
                             <p className="text-gold text-[10px] uppercase tracking-[0.3em] font-bold">India Granite</p>
                         </div>
                     </div>
                     <div className="flex items-center gap-4">
-                        <Button variant="outline" className="border-white/10 text-white/60 hover:text-white hover:border-gold" onClick={() => window.location.href = "/"}>
+                        <Button variant="outline" className="border-black/10 text-foreground/60 hover:text-foreground hover:border-gold" onClick={() => window.location.href = "/"}>
                             <ExternalLink size={14} className="mr-2" />
                             View Site
                         </Button>
-                        <Button variant="ghost" className="text-red-500/50 hover:text-red-500 hover:bg-red-500/5" onClick={() => apiRequest("POST", "/api/logout").then(() => window.location.href = "/auth")}>
+                        <Button variant="ghost" className="text-red-600/70 hover:text-red-600 hover:bg-red-50" onClick={() => apiRequest("POST", "/api/logout").then(() => window.location.href = "/auth")}>
                             <LogOut size={14} className="mr-2" />
                             Logout
                         </Button>
@@ -58,18 +58,18 @@ export default function Dashboard() {
 
             <div className="max-w-7xl mx-auto px-8 py-8">
                 {/* Welcome Banner */}
-                <div className="mb-8 p-6 rounded-lg bg-gradient-to-r from-gold/5 to-transparent border border-gold/10">
-                    <h2 className="text-2xl font-serif text-white">Welcome back, <span className="text-gold">{user.username}</span></h2>
-                    <p className="text-white/40 text-sm mt-1">Manage your enquiries and account settings below.</p>
+                <div className="mb-8 p-6 rounded-lg bg-gradient-to-r from-gold/10 to-transparent border border-gold/15">
+                    <h2 className="text-2xl font-serif text-foreground">Welcome back, <span className="text-gold">{user.username}</span></h2>
+                    <p className="text-foreground/50 text-sm mt-1">Manage your enquiries and account settings below.</p>
                 </div>
 
                 <Tabs defaultValue="enquiries" className="space-y-6">
-                    <TabsList className="bg-white/5 border border-white/10 p-1">
-                        <TabsTrigger value="enquiries" className="data-[state=active]:bg-gold data-[state=active]:text-black uppercase tracking-widest text-xs px-8 py-3 transition-all gap-2">
+                    <TabsList className="bg-secondary border border-black/5 p-1">
+                        <TabsTrigger value="enquiries" className="data-[state=active]:bg-gold data-[state=active]:text-white uppercase tracking-widest text-xs px-8 py-3 transition-all gap-2">
                             <MessageSquare size={14} />
                             Enquiries
                         </TabsTrigger>
-                        <TabsTrigger value="settings" className="data-[state=active]:bg-gold data-[state=active]:text-black uppercase tracking-widest text-xs px-8 py-3 transition-all gap-2">
+                        <TabsTrigger value="settings" className="data-[state=active]:bg-gold data-[state=active]:text-white uppercase tracking-widest text-xs px-8 py-3 transition-all gap-2">
                             <Settings size={14} />
                             Settings
                         </TabsTrigger>
@@ -77,11 +77,11 @@ export default function Dashboard() {
 
                     {/* ENQUIRIES TAB */}
                     <TabsContent value="enquiries">
-                        <Card className="bg-[#0a0a0a] border-white/5">
+                        <Card className="bg-white border-black/5 shadow-sm">
                             <CardHeader className="flex flex-row items-center justify-between">
                                 <div>
-                                    <CardTitle className="text-white font-serif uppercase tracking-widest">Contact Enquiries</CardTitle>
-                                    <p className="text-white/30 text-xs mt-1">{enquiries?.length || 0} total enquiries</p>
+                                    <CardTitle className="text-foreground font-serif uppercase tracking-widest">Contact Enquiries</CardTitle>
+                                    <p className="text-foreground/40 text-xs mt-1">{enquiries?.length || 0} total enquiries</p>
                                 </div>
                             </CardHeader>
                             <CardContent>
@@ -92,17 +92,17 @@ export default function Dashboard() {
                                 ) : enquiries && enquiries.length > 0 ? (
                                     <Table>
                                         <TableHeader>
-                                            <TableRow className="border-white/5 hover:bg-transparent">
-                                                <TableHead className="text-white/40 uppercase tracking-widest text-[10px]">Client Name</TableHead>
-                                                <TableHead className="text-white/40 uppercase tracking-widest text-[10px]">Contact Info</TableHead>
-                                                <TableHead className="text-white/40 uppercase tracking-widest text-[10px]">Message</TableHead>
-                                                <TableHead className="text-white/40 uppercase tracking-widest text-[10px]">Date</TableHead>
-                                                <TableHead className="text-right text-white/40 uppercase tracking-widest text-[10px]">Actions</TableHead>
+                                            <TableRow className="border-black/5 hover:bg-transparent">
+                                                <TableHead className="text-foreground/40 uppercase tracking-widest text-[10px]">Client Name</TableHead>
+                                                <TableHead className="text-foreground/40 uppercase tracking-widest text-[10px]">Contact Info</TableHead>
+                                                <TableHead className="text-foreground/40 uppercase tracking-widest text-[10px]">Message</TableHead>
+                                                <TableHead className="text-foreground/40 uppercase tracking-widest text-[10px]">Date</TableHead>
+                                                <TableHead className="text-right text-foreground/40 uppercase tracking-widest text-[10px]">Actions</TableHead>
                                             </TableRow>
                                         </TableHeader>
                                         <TableBody>
                                             {enquiries.map((e) => (
-                                                <TableRow key={e.id} className="border-white/5 hover:bg-white/5 transition-colors">
+                                                <TableRow key={e.id} className="border-black/5 hover:bg-secondary transition-colors">
                                                     <TableCell className="font-medium whitespace-nowrap">
                                                         <div className="flex items-center gap-3">
                                                             <div className="w-8 h-8 rounded-full bg-gold/10 flex items-center justify-center text-gold text-xs font-bold">
@@ -113,8 +113,8 @@ export default function Dashboard() {
                                                     </TableCell>
                                                     <TableCell>
                                                         <div className="space-y-1">
-                                                            <div className="flex items-center gap-2 text-xs text-white/60">
-                                                                <Mail size={10} className="text-white/30" />
+                                                            <div className="flex items-center gap-2 text-xs text-foreground/60">
+                                                                <Mail size={10} className="text-foreground/30" />
                                                                 {e.email}
                                                             </div>
                                                             <div className="flex items-center gap-2 text-xs font-bold text-gold">
@@ -124,18 +124,18 @@ export default function Dashboard() {
                                                         </div>
                                                     </TableCell>
                                                     <TableCell>
-                                                        <div className="text-xs text-white/70 leading-relaxed max-w-sm">
-                                                            {e.message.split("[Reference Image Data]")[0]}
-                                                            {e.message.includes("[Reference Image Data]") && (
+                                                        <div className="text-xs text-foreground/70 leading-relaxed max-w-sm">
+                                                            {(e.message ?? "").split("[Reference Image Data]")[0]}
+                                                            {(e.message ?? "").includes("[Reference Image Data]") && (
                                                                 <div className="mt-2">
                                                                     <p className="text-gold text-[10px] uppercase font-bold mb-1">Attached Reference:</p>
                                                                     <div
                                                                         className="relative group cursor-pointer"
-                                                                        onClick={() => setSelectedImage(e.message.split("[Reference Image Data]")[1].trim())}
+                                                                        onClick={() => setSelectedImage((e.message ?? "").split("[Reference Image Data]")[1].trim())}
                                                                     >
                                                                         <img
-                                                                            src={e.message.split("[Reference Image Data]")[1].trim()}
-                                                                            className="w-full h-32 object-cover bg-white/5 rounded border border-white/10 opacity-80 group-hover:opacity-100 transition-opacity"
+                                                                            src={(e.message ?? "").split("[Reference Image Data]")[1].trim()}
+                                                                            className="w-full h-32 object-cover bg-secondary rounded border border-black/10 opacity-90 group-hover:opacity-100 transition-opacity"
                                                                             alt="Reference"
                                                                         />
                                                                         <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
@@ -148,7 +148,7 @@ export default function Dashboard() {
                                                             )}
                                                         </div>
                                                     </TableCell>
-                                                    <TableCell className="text-xs text-white/30 whitespace-nowrap">
+                                                    <TableCell className="text-xs text-foreground/40 whitespace-nowrap">
                                                         {new Date(e.createdAt!).toLocaleDateString("en-IN", { day: "2-digit", month: "short", year: "numeric" })}
                                                     </TableCell>
                                                     <TableCell className="text-right">
@@ -156,7 +156,7 @@ export default function Dashboard() {
                                                             <Button
                                                                 variant="outline"
                                                                 size="sm"
-                                                                className="h-8 border-green-500/20 text-green-500 hover:bg-green-500 hover:text-black text-xs"
+                                                                className="h-8 border-green-600/30 text-green-700 hover:bg-green-600 hover:text-white text-xs"
                                                                 onClick={() => window.open(`tel:${e.mobileNumber}`)}
                                                             >
                                                                 <Phone size={12} className="mr-1" />
@@ -165,7 +165,7 @@ export default function Dashboard() {
                                                             <Button
                                                                 variant="ghost"
                                                                 size="icon"
-                                                                className="h-8 w-8 text-red-500/30 hover:text-red-500"
+                                                                className="h-8 w-8 text-red-500/50 hover:text-red-600"
                                                                 onClick={() => {
                                                                     if (confirm("Are you sure you want to delete this enquiry?")) {
                                                                         apiRequest("DELETE", `/api/admin/enquiries/${e.id}`).then(() => {
@@ -185,9 +185,9 @@ export default function Dashboard() {
                                     </Table>
                                 ) : (
                                     <div className="text-center py-16">
-                                        <MessageSquare className="w-12 h-12 text-white/10 mx-auto mb-4" />
-                                        <p className="text-white/30 text-sm">No enquiries yet</p>
-                                        <p className="text-white/15 text-xs mt-1">When customers contact you, their messages will appear here.</p>
+                                        <MessageSquare className="w-12 h-12 text-foreground/15 mx-auto mb-4" />
+                                        <p className="text-foreground/40 text-sm">No enquiries yet</p>
+                                        <p className="text-foreground/25 text-xs mt-1">When customers contact you, their messages will appear here.</p>
                                     </div>
                                 )}
                             </CardContent>
@@ -198,36 +198,36 @@ export default function Dashboard() {
                     <TabsContent value="settings">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             {/* Profile Card */}
-                            <Card className="bg-[#0a0a0a] border-white/5">
+                            <Card className="bg-white border-black/5 shadow-sm">
                                 <CardHeader>
-                                    <CardTitle className="text-white font-serif uppercase tracking-widest flex items-center gap-3">
+                                    <CardTitle className="text-foreground font-serif uppercase tracking-widest flex items-center gap-3">
                                         <User size={18} className="text-gold" />
                                         Profile Details
                                     </CardTitle>
                                 </CardHeader>
                                 <CardContent className="space-y-4">
-                                    <div className="p-4 rounded-lg bg-white/5 border border-white/5">
-                                        <p className="text-[10px] uppercase tracking-widest text-white/30 mb-1">Username</p>
-                                        <p className="text-white font-medium">{user.username}</p>
+                                    <div className="p-4 rounded-lg bg-secondary border border-black/5">
+                                        <p className="text-[10px] uppercase tracking-widest text-foreground/40 mb-1">Username</p>
+                                        <p className="text-foreground font-medium">{user.username}</p>
                                     </div>
-                                    <div className="p-4 rounded-lg bg-white/5 border border-white/5">
-                                        <p className="text-[10px] uppercase tracking-widest text-white/30 mb-1">Role</p>
+                                    <div className="p-4 rounded-lg bg-secondary border border-black/5">
+                                        <p className="text-[10px] uppercase tracking-widest text-foreground/40 mb-1">Role</p>
                                         <p className="text-gold font-medium uppercase tracking-widest text-sm">Admin</p>
                                     </div>
-                                    <div className="p-4 rounded-lg bg-white/5 border border-white/5">
-                                        <p className="text-[10px] uppercase tracking-widest text-white/30 mb-1">Status</p>
+                                    <div className="p-4 rounded-lg bg-secondary border border-black/5">
+                                        <p className="text-[10px] uppercase tracking-widest text-foreground/40 mb-1">Status</p>
                                         <div className="flex items-center gap-2">
                                             <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                                            <p className="text-green-500 font-medium text-sm">Active</p>
+                                            <p className="text-green-600 font-medium text-sm">Active</p>
                                         </div>
                                     </div>
                                 </CardContent>
                             </Card>
 
                             {/* Change Password Card */}
-                            <Card className="bg-[#0a0a0a] border-white/5">
+                            <Card className="bg-white border-black/5 shadow-sm">
                                 <CardHeader>
-                                    <CardTitle className="text-white font-serif uppercase tracking-widest flex items-center gap-3">
+                                    <CardTitle className="text-foreground font-serif uppercase tracking-widest flex items-center gap-3">
                                         <Lock size={18} className="text-gold" />
                                         Change Password
                                     </CardTitle>
@@ -271,18 +271,18 @@ export default function Dashboard() {
                                     }}>
                                         <div className="space-y-4">
                                             <div className="space-y-2">
-                                                <label className="text-[10px] uppercase tracking-widest text-white/40">New Username (optional)</label>
-                                                <input name="newUsername" defaultValue={user.username} className="w-full bg-white/5 border border-white/10 rounded px-4 py-3 text-sm text-white focus:border-gold outline-none transition-all" />
+                                                <label className="text-[10px] uppercase tracking-widest text-foreground/50">New Username (optional)</label>
+                                                <input name="newUsername" defaultValue={user.username} className="w-full bg-secondary border border-black/10 rounded px-4 py-3 text-sm text-foreground focus:border-gold outline-none transition-all" />
                                             </div>
                                             <div className="space-y-2">
-                                                <label className="text-[10px] uppercase tracking-widest text-white/40">New Password</label>
-                                                <input name="newPassword" type="password" placeholder="Enter new password" className="w-full bg-white/5 border border-white/10 rounded px-4 py-3 text-sm text-white focus:border-gold outline-none transition-all" />
+                                                <label className="text-[10px] uppercase tracking-widest text-foreground/50">New Password</label>
+                                                <input name="newPassword" type="password" placeholder="Enter new password" className="w-full bg-secondary border border-black/10 rounded px-4 py-3 text-sm text-foreground focus:border-gold outline-none transition-all" />
                                             </div>
                                             <div className="space-y-2">
-                                                <label className="text-[10px] uppercase tracking-widest text-white/40">Confirm Password</label>
-                                                <input name="confirmPassword" type="password" placeholder="Re-enter new password" className="w-full bg-white/5 border border-white/10 rounded px-4 py-3 text-sm text-white focus:border-gold outline-none transition-all" />
+                                                <label className="text-[10px] uppercase tracking-widest text-foreground/50">Confirm Password</label>
+                                                <input name="confirmPassword" type="password" placeholder="Re-enter new password" className="w-full bg-secondary border border-black/10 rounded px-4 py-3 text-sm text-foreground focus:border-gold outline-none transition-all" />
                                             </div>
-                                            <Button type="submit" className="w-full bg-gold text-black hover:bg-white transition-all font-bold uppercase tracking-widest text-xs py-6" disabled={profileSaving}>
+                                            <Button type="submit" className="w-full bg-gold text-white hover:bg-gold-dark transition-all font-bold uppercase tracking-widest text-xs py-6" disabled={profileSaving}>
                                                 {profileSaving && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                                                 Save Changes
                                             </Button>
@@ -316,8 +316,8 @@ export default function Dashboard() {
                             />
                         )}
                     </div>
-                    <div className="p-4 bg-neutral-900 border-t border-white/10 flex justify-between items-center">
-                        <span className="text-white/40 text-xs uppercase tracking-widest">Reference Image Viewer</span>
+                    <div className="p-4 bg-black/80 border-t border-white/10 flex justify-between items-center">
+                        <span className="text-white/50 text-xs uppercase tracking-widest">Reference Image Viewer</span>
                         <a
                             href={selectedImage || "#"}
                             download="reference-image"

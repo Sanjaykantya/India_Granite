@@ -190,6 +190,7 @@ export class MemStorage implements IStorage {
       quantity: insertEnquiry.quantity ?? null,
       referenceImageUrl: insertEnquiry.referenceImageUrl ?? null,
       message: insertEnquiry.message ?? null,
+      status: insertEnquiry.status ?? "new",
       createdAt: new Date(),
     };
     this.enquiries.set(id, enquiry);
@@ -198,7 +199,9 @@ export class MemStorage implements IStorage {
   async updateEnquiryStatus(id: string, status: "new" | "contacted"): Promise<Enquiry> {
     const existing = this.enquiries.get(id);
     if (!existing) throw new Error("Enquiry not found");
-    return existing;
+    const updated = { ...existing, status };
+    this.enquiries.set(id, updated);
+    return updated;
   }
   async deleteEnquiry(id: string): Promise<void> {
     this.enquiries.delete(id);
@@ -409,6 +412,7 @@ export class PostgresStorage implements IStorage {
       quantity: insertEnquiry.quantity ?? null,
       referenceImageUrl: insertEnquiry.referenceImageUrl ?? null,
       message: insertEnquiry.message ?? null,
+      status: insertEnquiry.status ?? "new",
       createdAt: new Date(),
     };
     await this.db.insert(enquiries).values(enquiry);
@@ -420,7 +424,9 @@ export class PostgresStorage implements IStorage {
       where: eq(enquiries.id, id),
     });
     if (!existing) throw new Error("Enquiry not found");
-    return existing;
+    const updated = { ...existing, status };
+    await this.db.update(enquiries).set({ status }).where(eq(enquiries.id, id));
+    return updated;
   }
 
   async deleteEnquiry(id: string): Promise<void> {

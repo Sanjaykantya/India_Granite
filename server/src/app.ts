@@ -3,14 +3,38 @@ import { createServer } from "http";
 import { registerRoutes } from "./routes.js";
 import path from "path";
 import cors from "cors";
+import rateLimit from "express-rate-limit";
+
+const allowedOrigins = (process.env.ALLOWED_ORIGINS || "http://localhost:5173")
+    .split(",")
+    .map((origin) => origin.trim())
+    .filter(Boolean);
 
 export async function setupApp() {
     const app = express();
     const httpServer = createServer(app);
 
     app.use(cors({
-        origin: true,
-        credentials: true
+        origin(origin, callback) {
+            // Allow same-origin/non-browser requests (no Origin header) and any
+            // explicitly allowed origin. Everything else is rejected — this
+            // previously reflected ANY origin with credentials enabled, which
+            // let any website read authenticated responses from a logged-in
+            // admin's browser (session hijack / enquiry data theft).
+            if (!origin || allowedOrigins.includes(origin)) {
+                return callback(null, true);
+            }
+            return callback(new Error(`Origin ${origin} not allowed by CORS`));
+        },
+        credentials: true,
+    }));
+
+    // General rate limit as a baseline against abuse/scraping
+    app.use(rateLimit({
+        windowMs: 15 * 60 * 1000,
+        limit: 300,
+        standardHeaders: true,
+        legacyHeaders: false,
     }));
 
     // Body parsing with increased limit for image uploads
@@ -33,11 +57,12 @@ export async function setupApp() {
         next();
     });
 
-    // CSP Header to fix devtools connection errors
+    // CSP for this API's own responses (the frontend is a separate static
+    // site on Vercel and sets its own CSP; this only covers this Express app).
     app.use((_req, res, next) => {
         res.setHeader(
             "Content-Security-Policy",
-            "default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://* http://*;"
+            "default-src 'none'; frame-ancestors 'none'"
         );
         next();
     });
